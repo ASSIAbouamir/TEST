@@ -1,0 +1,708 @@
+{
+  "metadata": {
+    "created": "2026-04-13T22:17:13.103341",
+    "version": "6.0-large",
+    "description": "Dataset RAGAS LARGE - 50 questions équilibrées OUI/NON",
+    "total": 54,
+    "oui_count": 25,
+    "non_count": 29
+  },
+  "questions": [
+    {
+      "id": "DZ_001",
+      "question": "Quelle loi algérienne régit la chasse ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Loi n° 04-07 du 14 août 2004 relative à la chasse.",
+      "country": "Algérie",
+      "difficulty": "facile",
+      "keywords": [
+        "loi 04-07",
+        "chasse"
+      ]
+    },
+    {
+      "id": "DZ_002",
+      "question": "Quel âge faut-il pour obtenir un permis de chasse en Algérie ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. 18 ans révolus selon l'article 9 de la Loi 04-07.",
+      "country": "Algérie",
+      "difficulty": "facile",
+      "keywords": [
+        "18 ans",
+        "permis",
+        "article 9"
+      ]
+    },
+    {
+      "id": "DZ_003",
+      "question": "Existe-t-il un arrêté sur les tailles marchandes des poissons en Algérie ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 8 Chaoual 1415 (9 mars 1995) fixe les tailles marchandes des grands migrateurs.",
+      "country": "Algérie",
+      "difficulty": "moyen",
+      "keywords": [
+        "arrêté",
+        "8 Chaoual 1415",
+        "tailles marchandes"
+      ]
+    },
+    {
+      "id": "DZ_004",
+      "question": "Quel décret algérien protège les espèces animales non-domestiques ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. Le Décret n° 83-509 du 20 août 1983.",
+      "country": "Algérie",
+      "difficulty": "moyen",
+      "keywords": [
+        "décret",
+        "83-509",
+        "espèces protégées"
+      ]
+    },
+    {
+      "id": "DZ_005",
+      "question": "Faut-il un stage d'habilitation pour obtenir un permis de chasse en Algérie ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. Article 9 alinéa 3 de la Loi 04-07 impose un stage d'habilitation.",
+      "country": "Algérie",
+      "difficulty": "moyen",
+      "keywords": [
+        "stage",
+        "habilitation",
+        "article 9"
+      ]
+    },
+    {
+      "id": "DZ_006",
+      "question": "Existe-t-il un arrêté complétant la liste des espèces protégées en Algérie ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 15 Chaâbane 1415 (17 janvier 1995) complète la liste des espèces protégées.",
+      "country": "Algérie",
+      "difficulty": "difficile",
+      "keywords": [
+        "arrêté",
+        "15 Chaâbane 1415",
+        "complète"
+      ]
+    },
+    {
+      "id": "TN_001",
+      "question": "Quel arrêté tunisien réglemente les filets maillants ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du ministre de l'agriculture du 28 septembre 1995.",
+      "country": "Tunisie",
+      "difficulty": "moyen",
+      "keywords": [
+        "arrêté",
+        "28 septembre 1995",
+        "filets maillants"
+      ]
+    },
+    {
+      "id": "TN_002",
+      "question": "Existe-t-il un décret-loi tunisien de 2011 sur la ratification ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. Le Décret-loi n° 2011-50 du 4 juin 2011 portant autorisation de ratification.",
+      "country": "Tunisie",
+      "difficulty": "difficile",
+      "keywords": [
+        "décret-loi",
+        "2011-50",
+        "ratification"
+      ]
+    },
+    {
+      "id": "TN_003",
+      "question": "La Tunisie a-t-elle une loi sur les filets de pêche ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 28 septembre 1995 réglemente les filets maillants et la pêche.",
+      "country": "Tunisie",
+      "difficulty": "moyen",
+      "keywords": [
+        "filets",
+        "pêche",
+        "réglementation"
+      ]
+    },
+    {
+      "id": "TN_004",
+      "question": "Y a-t-il des textes tunisiens sur la pêche en mer ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Tunisie dispose de plusieurs arrêtés réglementant la pêche en mer.",
+      "country": "Tunisie",
+      "difficulty": "facile",
+      "keywords": [
+        "pêche en mer",
+        "textes"
+      ]
+    },
+    {
+      "id": "MA_001",
+      "question": "Le Maroc a-t-il une loi sur la pollution par les navires ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Loi n° 69-18 relative à la pollution par les navires.",
+      "country": "Maroc",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi 69-18",
+        "pollution",
+        "navires"
+      ]
+    },
+    {
+      "id": "MA_002",
+      "question": "Existe-t-il un accord marocain sur les oiseaux d'eau migrateurs ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Accord sur la conservation des oiseaux d'eau migrateurs d'Afrique-Eurasie.",
+      "country": "Maroc",
+      "difficulty": "moyen",
+      "keywords": [
+        "accord",
+        "oiseaux d'eau",
+        "Afrique-Eurasie"
+      ]
+    },
+    {
+      "id": "MA_003",
+      "question": "Quelle loi marocaine interdit la pêche des mammifères marins ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 6 rejeb 1440 (12 mars 2019) interdit la pêche des mammifères marins.",
+      "country": "Maroc",
+      "difficulty": "moyen",
+      "keywords": [
+        "mammifères marins",
+        "interdiction",
+        "pêche"
+      ]
+    },
+    {
+      "id": "MA_004",
+      "question": "Le Maroc a-t-il signé l'accord sur les oiseaux d'eau ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. Le Maroc est signataire de l'Accord sur la conservation des oiseaux d'eau migrateurs.",
+      "country": "Maroc",
+      "difficulty": "facile",
+      "keywords": [
+        "accord",
+        "signataire",
+        "oiseaux"
+      ]
+    },
+    {
+      "id": "CG_001",
+      "question": "Le Congo a-t-il une loi sur la protection de l'environnement ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Loi No.003/91 du 23 avril 1991 sur la protection de l'environnement.",
+      "country": "Congo",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "003/91",
+        "environnement"
+      ]
+    },
+    {
+      "id": "CG_002",
+      "question": "Existe-t-il une loi congolaise de 2023 sur la gestion environnementale ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Loi n° 33-2023 du 17 novembre 2023 sur la gestion durable de l'environnement.",
+      "country": "Congo",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi 33-2023",
+        "gestion",
+        "environnement"
+      ]
+    },
+    {
+      "id": "CG_003",
+      "question": "Le Congo a-t-il des classes d'espèces animales protégées ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté n° 6075 du 9 avril 2011 définit les classes A, B et C d'espèces protégées.",
+      "country": "Congo",
+      "difficulty": "moyen",
+      "keywords": [
+        "classes",
+        "espèces protégées",
+        "arrêté 6075"
+      ]
+    },
+    {
+      "id": "CG_004",
+      "question": "Quelle loi congolaise réglemente la chasse ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Loi n° 82-002 du 28 mai 1982 portant réglementation de la chasse.",
+      "country": "Congo",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "82-002",
+        "chasse"
+      ]
+    },
+    {
+      "id": "KM_001",
+      "question": "Les Comores ont-elles un arrêté sur la protection de la faune ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté n° 01/031/MPE/CAB du 14 mai 2001 sur la protection des espèces de faune et flore.",
+      "country": "Comores",
+      "difficulty": "difficile",
+      "keywords": [
+        "arrêté",
+        "01/031",
+        "faune et flore"
+      ]
+    },
+    {
+      "id": "KM_002",
+      "question": "Existe-t-il une législation comorienne sur les espèces sauvages ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 14 mai 2001 fixe les modalités de protection des espèces sauvages.",
+      "country": "Comores",
+      "difficulty": "moyen",
+      "keywords": [
+        "législation",
+        "espèces sauvages",
+        "protection"
+      ]
+    },
+    {
+      "id": "FR_001",
+      "question": "La France a-t-elle un arrêté sur les mammifères marins protégés ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 1er juillet 2011 fixe la liste des mammifères marins protégés.",
+      "country": "France",
+      "difficulty": "moyen",
+      "keywords": [
+        "arrêté",
+        "1er juillet 2011",
+        "mammifères marins"
+      ]
+    },
+    {
+      "id": "FR_002",
+      "question": "Existe-t-il une réglementation française sur la protection des cétacés ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. L'Arrêté du 1er juillet 2011 protège les cétacés et siréniens.",
+      "country": "France",
+      "difficulty": "moyen",
+      "keywords": [
+        "cétacés",
+        "protection",
+        "arrêté 2011"
+      ]
+    },
+    {
+      "id": "BJ_001",
+      "question": "Le Bénin a-t-il une loi sur la pêche ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. Le Bénin dispose de lois sur la pêche et la protection des ressources halieutiques.",
+      "country": "Bénin",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "pêche",
+        "Bénin"
+      ]
+    },
+    {
+      "id": "CI_001",
+      "question": "La Côte d'Ivoire a-t-elle des lois sur la protection marine ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. La Côte d'Ivoire dispose de lois sur la protection marine et la pêche.",
+      "country": "Côte d'Ivoire",
+      "difficulty": "moyen",
+      "keywords": [
+        "protection marine",
+        "pêche",
+        "Côte d'Ivoire"
+      ]
+    },
+    {
+      "id": "GA_001",
+      "question": "Le Gabon a-t-il une législation sur la pêche ?",
+      "expected_answer": "OUI",
+      "ground_truth": "OUI. Le Gabon dispose de lois réglementant la pêche et la protection des ressources halieutiques.",
+      "country": "Gabon",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "pêche",
+        "Gabon"
+      ]
+    },
+    {
+      "id": "DZ_101",
+      "question": "Existe-t-il une loi algérienne autorisant la chasse à la baleine ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi algérienne n'autorise la chasse à la baleine. La Loi 04-07 protège les espèces marines.",
+      "country": "Algérie",
+      "difficulty": "moyen",
+      "keywords": [
+        "chasse",
+        "baleine",
+        "interdiction"
+      ]
+    },
+    {
+      "id": "DZ_102",
+      "question": "Y a-t-il un arrêté algérien de 2020 sur les quotas de pêche industrielle ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté de 2020 sur les quotas de pêche industrielle n'a été trouvé dans la base.",
+      "country": "Algérie",
+      "difficulty": "difficile",
+      "keywords": [
+        "arrêté",
+        "2020",
+        "quotas"
+      ]
+    },
+    {
+      "id": "DZ_103",
+      "question": "La Loi 04-07 autorise-t-elle la chasse sans permis ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. La Loi 04-07 interdit la chasse sans permis. Un permis est obligatoire.",
+      "country": "Algérie",
+      "difficulty": "facile",
+      "keywords": [
+        "chasse sans permis",
+        "interdiction"
+      ]
+    },
+    {
+      "id": "DZ_104",
+      "question": "Existe-t-il un décret algérien de 1990 sur la protection des pandas ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun décret algérien de 1990 sur la protection des pandas n'existe dans la base.",
+      "country": "Algérie",
+      "difficulty": "difficile",
+      "keywords": [
+        "décret",
+        "1990",
+        "pandas"
+      ]
+    },
+    {
+      "id": "DZ_105",
+      "question": "L'Algérie a-t-elle une loi de 2015 sur la pêche à la dynamite ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi de 2015 sur la pêche à la dynamite n'a été trouvée dans la base.",
+      "country": "Algérie",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "2015",
+        "dynamite"
+      ]
+    },
+    {
+      "id": "TN_101",
+      "question": "La Tunisie a-t-elle une loi interdisant totalement la pêche en mer ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. La Tunisie n'a pas de loi interdisant totalement la pêche en mer. Elle réglemente la pêche.",
+      "country": "Tunisie",
+      "difficulty": "facile",
+      "keywords": [
+        "interdiction",
+        "pêche en mer"
+      ]
+    },
+    {
+      "id": "TN_102",
+      "question": "Existe-t-il un décret tunisien de 2023 sur l'interdiction des filets maillants ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun décret de 2023 sur l'interdiction des filets maillants. L'arrêté de 1995 les réglemente encore.",
+      "country": "Tunisie",
+      "difficulty": "difficile",
+      "keywords": [
+        "décret",
+        "2023",
+        "filets"
+      ]
+    },
+    {
+      "id": "TN_103",
+      "question": "La Tunisie a-t-elle une loi de 1980 sur la chasse aux éléphants ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi tunisienne de 1980 sur la chasse aux éléphants n'existe dans la base.",
+      "country": "Tunisie",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "1980",
+        "éléphants"
+      ]
+    },
+    {
+      "id": "TN_104",
+      "question": "Existe-t-il un arrêté tunisien autorisant la pêche aux explosifs ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté tunisien n'autorise la pêche aux explosifs. C'est illégal.",
+      "country": "Tunisie",
+      "difficulty": "moyen",
+      "keywords": [
+        "explosifs",
+        "pêche",
+        "illégal"
+      ]
+    },
+    {
+      "id": "MA_101",
+      "question": "Le Maroc a-t-il une loi de 1990 sur la protection des tortues marines ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi marocaine de 1990 sur les tortues n'a été trouvée dans la base.",
+      "country": "Maroc",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "1990",
+        "tortues"
+      ]
+    },
+    {
+      "id": "MA_102",
+      "question": "Existe-t-il un arrêté marocain autorisant la pêche aux explosifs ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté marocain n'autorise la pêche aux explosifs. Cette pratique est illégale.",
+      "country": "Maroc",
+      "difficulty": "facile",
+      "keywords": [
+        "explosifs",
+        "pêche",
+        "illégale"
+      ]
+    },
+    {
+      "id": "MA_103",
+      "question": "Le Maroc a-t-il une loi de 2000 sur la chasse aux lions ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi marocaine de 2000 sur la chasse aux lions n'existe dans la base.",
+      "country": "Maroc",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "2000",
+        "lions"
+      ]
+    },
+    {
+      "id": "MA_104",
+      "question": "Existe-t-il un décret marocain de 2010 interdisant tous les filets ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun décret de 2010 n'interdit tous les filets. La réglementation est plus nuancée.",
+      "country": "Maroc",
+      "difficulty": "moyen",
+      "keywords": [
+        "décret",
+        "2010",
+        "filets"
+      ]
+    },
+    {
+      "id": "CG_101",
+      "question": "Le Congo a-t-il une loi de 2010 sur l'interdiction complète de la chasse ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Le Congo n'a pas de loi de 2010 interdisant complètement la chasse. La Loi 82-002 réglemente la chasse.",
+      "country": "Congo",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "2010",
+        "interdiction chasse"
+      ]
+    },
+    {
+      "id": "CG_102",
+      "question": "Existe-t-il un arrêté congolais de 2022 sur la protection des pandas ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté congolais de 2022 sur la protection des pandas n'existe dans la base.",
+      "country": "Congo",
+      "difficulty": "difficile",
+      "keywords": [
+        "arrêté",
+        "2022",
+        "pandas"
+      ]
+    },
+    {
+      "id": "CG_103",
+      "question": "Le Congo a-t-il une loi de 1995 sur la pêche à la dynamite ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi congolaise de 1995 sur la pêche à la dynamite n'a été trouvée.",
+      "country": "Congo",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "1995",
+        "dynamite"
+      ]
+    },
+    {
+      "id": "CG_104",
+      "question": "Existe-t-il un arrêté congolais autorisant la chasse aux gorilles ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté n'autorise la chasse aux gorilles. Les espèces de classe A sont protégées.",
+      "country": "Congo",
+      "difficulty": "moyen",
+      "keywords": [
+        "gorilles",
+        "chasse",
+        "interdiction"
+      ]
+    },
+    {
+      "id": "KM_101",
+      "question": "Les Comores ont-elles une loi de 1995 sur la pêche à la dynamite ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi des Comores de 1995 sur la pêche à la dynamite n'a été trouvée.",
+      "country": "Comores",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "1995",
+        "dynamite"
+      ]
+    },
+    {
+      "id": "KM_102",
+      "question": "Existe-t-il un arrêté comorien de 2010 sur la chasse aux baleines ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté comorien de 2010 sur la chasse aux baleines n'existe dans la base.",
+      "country": "Comores",
+      "difficulty": "difficile",
+      "keywords": [
+        "arrêté",
+        "2010",
+        "baleines"
+      ]
+    },
+    {
+      "id": "BJ_101",
+      "question": "Le Bénin a-t-il une loi de 1980 sur la protection des requins ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi béninoise de 1980 sur la protection des requins n'existe dans la base.",
+      "country": "Bénin",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "1980",
+        "requins"
+      ]
+    },
+    {
+      "id": "BJ_102",
+      "question": "Existe-t-il un décret béninois de 2005 sur l'interdiction de la pêche ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun décret de 2005 n'interdit la pêche. La pêche est réglementée, pas interdite.",
+      "country": "Bénin",
+      "difficulty": "moyen",
+      "keywords": [
+        "décret",
+        "2005",
+        "interdiction pêche"
+      ]
+    },
+    {
+      "id": "CI_101",
+      "question": "La Côte d'Ivoire a-t-elle une loi de 2005 interdisant la pêche traditionnelle ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi ivoirienne de 2005 n'interdit la pêche traditionnelle dans la base.",
+      "country": "Côte d'Ivoire",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "2005",
+        "traditionnelle"
+      ]
+    },
+    {
+      "id": "FR_101",
+      "question": "La France a-t-elle une loi de 1998 sur la chasse aux baleines dans les Alpes ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi française de 1998 sur la chasse aux baleines dans les Alpes n'existe.",
+      "country": "France",
+      "difficulty": "facile",
+      "keywords": [
+        "loi",
+        "1998",
+        "Alpes",
+        "baleines"
+      ]
+    },
+    {
+      "id": "GA_101",
+      "question": "Le Gabon a-t-il un arrêté de 2015 autorisant la pêche aux filets dérivants ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun arrêté gabonais de 2015 n'autorise la pêche aux filets dérivants dans la base.",
+      "country": "Gabon",
+      "difficulty": "difficile",
+      "keywords": [
+        "arrêté",
+        "2015",
+        "filets dérivants"
+      ]
+    },
+    {
+      "id": "GN_101",
+      "question": "La Guinée a-t-elle une loi de 1990 sur la protection des coraux artificiels ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi guinéenne de 1990 sur les coraux artificiels n'a été trouvée.",
+      "country": "Guinée",
+      "difficulty": "difficile",
+      "keywords": [
+        "loi",
+        "1990",
+        "coraux"
+      ]
+    },
+    {
+      "id": "DJ_101",
+      "question": "Djibouti a-t-il une loi de 2000 sur l'interdiction de la pêche côtière ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucune loi djiboutienne de 2000 n'interdit la pêche côtière dans la base.",
+      "country": "Djibouti",
+      "difficulty": "moyen",
+      "keywords": [
+        "loi",
+        "2000",
+        "pêche côtière"
+      ]
+    },
+    {
+      "id": "XX_001",
+      "question": "L'Égypte a-t-elle une loi sur la chasse au lion dans la base de données ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun document égyptien n'est présent dans la base de données.",
+      "country": "Égypte",
+      "difficulty": "moyen",
+      "keywords": [
+        "Égypte",
+        "non présent"
+      ]
+    },
+    {
+      "id": "XX_002",
+      "question": "Le Sénégal a-t-il une loi sur la protection des dauphins dans la base ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun document sénégalais n'est présent dans la base de données.",
+      "country": "Sénégal",
+      "difficulty": "moyen",
+      "keywords": [
+        "Sénégal",
+        "non présent"
+      ]
+    },
+    {
+      "id": "XX_003",
+      "question": "Le Mali a-t-il une législation sur la pêche dans la base de données ?",
+      "expected_answer": "NON",
+      "ground_truth": "NON. Aucun document malien n'est présent dans la base de données.",
+      "country": "Mali",
+      "difficulty": "facile",
+      "keywords": [
+        "Mali",
+        "non présent"
+      ]
+    }
+  ]
+}
