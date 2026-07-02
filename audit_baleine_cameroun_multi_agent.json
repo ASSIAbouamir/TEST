@@ -1,0 +1,112 @@
+[
+  {
+    "prompt": "Est-ce qu'il existe un article portant sur l'interdiction des baleines (cétacés) au Cameroun (chasse, pêche ou capture) ? Il peut s'agir d'une interdiction générale relative aux mammifères marins ou des espèces protégées.",
+    "answer": "<reflexion>Oui, l'article 26(1) interdit la capture des espèces aquatiques intégralement protégées, y compris les baleines.</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Section_2",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_9",
+      "cmr231986.md | Art: Section_1"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'il existe un article portant sur l'interdiction des baleines (cétacés) (chasse, pêche ou capture) qui précise que cette mesure n'est applicable qu'à certaines zones, aires ou régions au Cameroun ? Il peut s'agir d'une interdiction générale relative aux mammifères marins ou des espèces protégées.",
+    "answer": "<reflexion>Il n'y a pas d'article spécifique concernant l'interdiction de la chasse, pêche ou capture de baleines dans certaines zones.</reflexion>\nVerdict : Non",
+    "sources": [
+      "cmr231986.md | Art: Section_1",
+      "cmr231986.md | Art: Section_2",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_9"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'il existe un article portant sur l'interdiction des baleines (cétacés) (chasse, pêche ou capture) qui précise que cette mesure n'est pas applicable en permanence (temporalité) au Cameroun ? Il peut s'agir d'une interdiction générale relative aux mammifères marins ou des espèces protégées.",
+    "answer": "<reflexion>Non, il n'y a pas d'article portant sur l'interdiction des baleines avec une exception temporelle dans les documents fournis.</reflexion>\nVerdict : Non",
+    "sources": [
+      "cmr231986.md | Art: Section_2",
+      "cmr231986.md | Art: Section_1",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_4"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'un texte juridique précise les types d'activités concernées par l'interdiction des baleines (cétacés) au Cameroun ? Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées.",
+    "answer": "<reflexion>Oui, l'Article 26(1) précise que la capture des espèces aquatiques intégralement protégées est interdite.</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Article 26(1)",
+      "cmr231986.md | Art: Section_9",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Section_1"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'un texte juridique mentionne des exceptions à l'interdiction des baleines (cétacés) au Cameroun (chasse, pêche ou capture) ? (Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées) Vérifie si ce texte concernant l'interdiction des baleines (cétacés) au Cameroun inclut des exceptions relatives à d'autres domaines que de la santé, de l'ordre public et de la recherche. (Ne pas inclure les délais de mise en place de la loi. Les dérogations ou autorisations spécifiques constituent des exceptions)",
+    "answer": "<reflexion>Non, il n'y a pas d'exceptions mentionnées dans les articles fournis concernant l'interdiction de la chasse, de la pêche ou de la capture des baleines.</reflexion>\nVerdict : Non",
+    "sources": [
+      "cmr231986.md | Art: Section_4",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_9",
+      "cmr231986.md | Art: Article 26"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'un texte juridique mentionne des exceptions à l'interdiction des baleines (cétacés) au Cameroun (chasse, pêche ou capture) ? (Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées) Ne pas inclure les délais de mise en place de la loi. Les dérogations ou autorisations spécifiques constituent des exceptions",
+    "answer": "<reflexion>Oui. L'article 26 de la loi n° 2004-019 du 7 décembre 2004 précise que la capture des espèces aquatiques intégralement protégées est interdite, mais prévoit que celles capturées accidentellement doivent être immédiatement remises à l'eau, ce qui constitue une exception de remise à l'eau.</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Section_4",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_9"
+    ]
+  },
+  {
+    "prompt": "Est-ce que l'infraction à l'interdiction des baleines (cétacés) au Cameroun (chasse, pêche ou capture) entraîne une peine de prison ? (Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées)",
+    "answer": "<reflexion>Oui, l'infraction à l'interdiction entraîne une peine de prison selon l'article 81.</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Article 81",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Article 81",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Section_4"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'au Cameroun, des procédures de contrôle sont spécifiquement décrites pour garantir ou assurer le respect de l'interdiction des baleines (cétacés) (chasse, pêche ou capture) ? Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées. Par exemple, l'existence d'une administration, un comité, un service ou un agent pour superviser, évaluer ou constater l'application de cette interdiction.",
+    "answer": "<reflexion>Oui.</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_9",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Section_4",
+      " | Art: Article 35"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'au Cameroun, des procédures de contrôle sont spécifiquement décrites pour garantir ou assurer le respect de l'interdiction des baleines (cétacés) ? Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées. Par exemple, l'existence d'une administration, un comité, un service ou un agent pour superviser, évaluer ou constater l'application de cette interdiction. Si ces procédures existent, vérifiez si elles précisent des périodes (temporalité) spécifiques pour le contrôle du respect de l'interdiction des baleines (cétacés).",
+    "answer": "<reflexion>Oui, il existe une administration compétente pour superviser l'application de l'interdiction des espèces aquatiques intégralement protégées.</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Section_9",
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Section_4",
+      " | Art: Article 35"
+    ]
+  },
+  {
+    "prompt": "Est-ce qu'au Cameroun, des procédures de contrôle sont spécifiquement décrites pour garantir ou assurer le respect de l'interdiction des baleines (cétacés) ? Il peut s'agir d'une interdiction générale des mammifères marins ou des espèces protégées. Par exemple, l'existence d'une administration, un comité, un service ou un agent pour superviser, évaluer ou constater l'application de cette interdiction. Si ces procédures existent, vérifiez si elles précisent des lieux ou zones spécifiques pour le contrôle du respect de l'interdiction des baleines (cétacés).",
+    "answer": "<reflexion>Oui, il existe une administration compétente pour superviser et constater l'application de l'interdiction des espèces aquatiques intégralement protégées (Article 26).</reflexion>\nVerdict : Oui",
+    "sources": [
+      "cmr231986.md | Art: Article 26",
+      "cmr231986.md | Art: Section_9",
+      "cmr231986.md | Art: Article 1",
+      "cmr231986.md | Art: Section_4",
+      "cmr231986.md | Art: Article 26"
+    ]
+  }
+]

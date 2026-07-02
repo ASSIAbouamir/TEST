@@ -1,0 +1,685 @@
+{
+  "nodes": [
+    {
+      "id": "def_a)_aquaculture",
+      "node_id": "def_a)_aquaculture",
+      "term": "a) aquaculture",
+      "definition": "toute activitÃ© d'Ã©levage ou de culture d'organismes aquatiques tels les poissons, mollusques, crustacÃ©s et vÃ©gÃ©taux ;",
+      "source_page": 1,
+      "context": "a) aquaculture : toute activitÃ© d'Ã©levage ou de culture d'organismes aquatiques tels les poissons, mollusques, crustacÃ©s et vÃ©gÃ©taux ;"
+    },
+    {
+      "id": "def_b)_armateur",
+      "node_id": "def_b)_armateur",
+      "term": "b) armateur",
+      "definition": "toute personne physique ou morale, propriÃ©taire ou non d'un navire de pÃªche ou d'une embarcation de pÃªche qui en assure l'exploitation ;",
+      "source_page": 1,
+      "context": "b) armateur : toute personne physique ou morale, propriÃ©taire ou non d'un navire de pÃªche ou d'une embarcation de pÃªche qui en assure l'exploitation ;"
+    },
+    {
+      "id": "def_c)_bateau_de_pÃªche",
+      "node_id": "def_c)_bateau_de_pÃªche",
+      "term": "c) bateau de pÃªche",
+      "definition": "bÃ¢timent de navigation utilisÃ© et Ã©quipÃ© pour pÃªcher sur les fleuves, les riviÃ¨res ou les canaux ;",
+      "source_page": 1,
+      "context": "c) bateau de pÃªche : bÃ¢timent de navigation utilisÃ© et Ã©quipÃ© pour pÃªcher sur les fleuves, les riviÃ¨res ou les canaux ;"
+    },
+    {
+      "id": "def_d)_eaux_maritimes",
+      "node_id": "def_d)_eaux_maritimes",
+      "term": "d) eaux maritimes",
+      "definition": "les eaux intÃ©rieures, la mer territoriale et la zone Ã©conomique exclusive telles que dÃ©finies par la lÃ©gislation en vigueur ;",
+      "source_page": 1,
+      "context": "d) eaux maritimes : les eaux intÃ©rieures, la mer territoriale et la zone Ã©conomique exclusive telles que dÃ©finies par la lÃ©gislation en vigueur ;"
+    },
+    {
+      "id": "def_e)_eaux_continentales",
+      "node_id": "def_e)_eaux_continentales",
+      "term": "e) eaux continentales",
+      "definition": "les eaux des fleuves, riviÃ¨res, lacs, lagunes, Ã©tangs, mares, plaines d'inondation et autres plans d'eau naturels ou artificiels, permanents ou non ;",
+      "source_page": 1,
+      "context": "e) eaux continentales : les eaux des fleuves, riviÃ¨res, lacs, lagunes, Ã©tangs, mares, plaines d'inondation et autres plans d'eau naturels ou artificiels, permanents ou non ;"
+    },
+    {
+      "id": "def_f)_embarcation_de_pÃªche_continentale",
+      "node_id": "def_f)_embarcation_de_pÃªche_continentale",
+      "term": "f) embarcation de pÃªche continentale",
+      "definition": "tout moyen flottant utilisÃ© pour l'exercice de la pÃªche continentale ;",
+      "source_page": 1,
+      "context": "f) embarcation de pÃªche continentale : tout moyen flottant utilisÃ© pour l'exercice de la pÃªche continentale ;"
+    },
+    {
+      "id": "def_g)_embarcation_de_pÃªche_maritime_artisanale",
+      "node_id": "def_g)_embarcation_de_pÃªche_maritime_artisanale",
+      "term": "g) embarcation de pÃªche maritime artisanale",
+      "definition": "tout moyen flottant utilisÃ© pour l'exercice de la pÃªche artisanale maritime ;",
+      "source_page": 1,
+      "context": "g) embarcation de pÃªche maritime artisanale : tout moyen flottant utilisÃ© pour l'exercice de la pÃªche artisanale maritime ;"
+    },
+    {
+      "id": "def_h)_embarcation_de_collecte",
+      "node_id": "def_h)_embarcation_de_collecte",
+      "term": "h) embarcation de collecte",
+      "definition": "toute embarcation impliquÃ©e dans le transport et le commerce de produits de la pÃªche transbordÃ©s Ã  partir de navires et d'embarcations de pÃªche ;",
+      "source_page": 1,
+      "context": "h) embarcation de collecte : toute embarcation impliquÃ©e dans le transport et le commerce de produits de la pÃªche transbordÃ©s Ã  partir de navires et d'embarcations de pÃªche ;"
+    },
+    {
+      "id": "def_i)_~~Ã©tablissement~~_de_traitement_et_de_transformation_des_produits_de_pÃªche",
+      "node_id": "def_i)_~~Ã©tablissement~~_de_traitement_et_de_transformation_des_produits_de_pÃªche",
+      "term": "i) ~~Ã©tablissement~~ de traitement et de transformation des produits de pÃªche",
+      "definition": "Tout ~~bÃ¢timent~~ ou ~~installation~~ dans lequel des produits de pÃªche sont transformÃ©s, prÃ©parÃ©s, conditionnÃ©s ou stockÃ©s Ã  l'exception des mÃ©thodes traditionnelles de traitement ou de transformation ;",
+      "source_page": 1,
+      "context": "i) ~~Ã©tablissement~~ de traitement et de transformation des produits de pÃªche : Tout ~~bÃ¢timent~~ ou ~~installation~~ dans lequel des produits de pÃªche sont transformÃ©s, prÃ©parÃ©s, conditionnÃ©s ou stockÃ©s Ã  l'exception des mÃ©thodes traditionnelles de traitement ou de transformation ;"
+    },
+    {
+      "id": "def_j)_navire_de_pÃªche",
+      "node_id": "def_j)_navire_de_pÃªche",
+      "term": "j) navire de pÃªche",
+      "definition": "tout moyen naval utilisÃ© et Ã©quipÃ© pour la pÃªche maritime semi industrielle et industrielle ;",
+      "source_page": 1,
+      "context": "j) navire de pÃªche : tout moyen naval utilisÃ© et Ã©quipÃ© pour la pÃªche maritime semi industrielle et industrielle ;"
+    },
+    {
+      "id": "def_k)_navire_de_pÃªche_bÃ©ninois",
+      "node_id": "def_k)_navire_de_pÃªche_bÃ©ninois",
+      "term": "k) navire de pÃªche bÃ©ninois",
+      "definition": "tout navire de pÃªche immatriculÃ© en RÃ©publique du BÃ©nin et battant pavillon bÃ©ninois conformÃ©ment Ã  la lÃ©gislation en vigueur ;",
+      "source_page": 1,
+      "context": "k) navire de pÃªche bÃ©ninois : tout navire de pÃªche immatriculÃ© en RÃ©publique du BÃ©nin et battant pavillon bÃ©ninois conformÃ©ment Ã  la lÃ©gislation en vigueur ;"
+    },
+    {
+      "id": "def_l)_navire_de_pÃªche_Ã©tranger",
+      "node_id": "def_l)_navire_de_pÃªche_Ã©tranger",
+      "term": "l) navire de pÃªche Ã©tranger",
+      "definition": "tout navire de pÃªche autre qu'un navire de pÃªche bÃ©ninois ;",
+      "source_page": 1,
+      "context": "l) navire de pÃªche Ã©tranger : tout navire de pÃªche autre qu'un navire de pÃªche bÃ©ninois ;"
+    },
+    {
+      "id": "def_m)_organisme_aquatique",
+      "node_id": "def_m)_organisme_aquatique",
+      "term": "m) organisme aquatique",
+      "definition": "toute faune ou flore aquatique, Ã  l'exception des reptiles et des mammifÃ¨res ;",
+      "source_page": 1,
+      "context": "m) organisme aquatique : toute faune ou flore aquatique, Ã  l'exception des reptiles et des mammifÃ¨res ;"
+    },
+    {
+      "id": "def_n)_pÃªche",
+      "node_id": "def_n)_pÃªche",
+      "term": "n) pÃªche",
+      "definition": "toute activitÃ© visant la capture, la cueillette ou la rÃ©colte de toute espÃ¨ce d'organismes aquatiques dans les eaux maritimes ou continentales sous juridiction bÃ©ninoise ;",
+      "source_page": 1,
+      "context": "n) pÃªche : toute activitÃ© visant la capture, la cueillette ou la rÃ©colte de toute espÃ¨ce d'organismes aquatiques dans les eaux maritimes ou continentales sous juridiction bÃ©ninoise ;"
+    },
+    {
+      "id": "def_o)_pÃªche_continentale",
+      "node_id": "def_o)_pÃªche_continentale",
+      "term": "o) pÃªche continentale",
+      "definition": "toute pÃªche pratiquÃ©e dans les eaux continentales telles que dÃ©finies au paragraphe (e) du prÃ©sent article ;",
+      "source_page": 1,
+      "context": "o) pÃªche continentale : toute pÃªche pratiquÃ©e dans les eaux continentales telles que dÃ©finies au paragraphe (e) du prÃ©sent article ;"
+    },
+    {
+      "id": "def_p)_pÃªche_en_haute_mer",
+      "node_id": "def_p)_pÃªche_en_haute_mer",
+      "term": "p) pÃªche en haute mer",
+      "definition": "toute pÃªche effectuÃ©e par un navire de pÃªche bÃ©ninois au-delÃ  de la zone Ã©conomique exclusive bÃ©ninoise ;",
+      "source_page": 1,
+      "context": "p) pÃªche en haute mer : toute pÃªche effectuÃ©e par un navire de pÃªche bÃ©ninois au-delÃ  de la zone Ã©conomique exclusive bÃ©ninoise ;"
+    },
+    {
+      "id": "def_q)_pÃªche_maritime",
+      "node_id": "def_q)_pÃªche_maritime",
+      "term": "q) pÃªche maritime",
+      "definition": "toute pÃªche pratiquÃ©e dans les eaux maritimes telles que dÃ©finies au paragraphe (d) du prÃ©sent article ;",
+      "source_page": 1,
+      "context": "q) pÃªche maritime : toute pÃªche pratiquÃ©e dans les eaux maritimes telles que dÃ©finies au paragraphe (d) du prÃ©sent article ;"
+    },
+    {
+      "id": "def_r)_pÃªche_de_recherche_scientifique",
+      "node_id": "def_r)_pÃªche_de_recherche_scientifique",
+      "term": "r) pÃªche de recherche scientifique",
+      "definition": "pÃªche ayant pour objet l'Ã©tude des ressources halieutiques et de leur environnement ou l'expÃ©rimentation de nouveau type de navire, matÃ©riel, engin ou technique de pÃªche ;",
+      "source_page": 1,
+      "context": "r) pÃªche de recherche scientifique : pÃªche ayant pour objet l'Ã©tude des ressources halieutiques et de leur environnement ou l'expÃ©rimentation de nouveau type de navire, matÃ©riel, engin ou technique de pÃªche ;"
+    },
+    {
+      "id": "def_s)_pÃªche_sportive",
+      "node_id": "def_s)_pÃªche_sportive",
+      "term": "s) pÃªche sportive",
+      "definition": "pÃªche pratiquÃ©e Ã  des fins rÃ©crÃ©atives et Ã  but non lucratif, Ã  l'exclusion de la pÃªche Ã  la ligne munie d'un hameÃ§on ;",
+      "source_page": 1,
+      "context": "s) pÃªche sportive : pÃªche pratiquÃ©e Ã  des fins rÃ©crÃ©atives et Ã  but non lucratif, Ã  l'exclusion de la pÃªche Ã  la ligne munie d'un hameÃ§on ;"
+    },
+    {
+      "id": "def_t)_pÃªche_de_subsistance",
+      "node_id": "def_t)_pÃªche_de_subsistance",
+      "term": "t) pÃªche de subsistance",
+      "definition": "activitÃ© de pÃªche essentiellement tournÃ©e vers l'autoconsommation ;",
+      "source_page": 1,
+      "context": "t) pÃªche de subsistance : activitÃ© de pÃªche essentiellement tournÃ©e vers l'autoconsommation ;"
+    },
+    {
+      "id": "def_u)_pÃªcherie",
+      "node_id": "def_u)_pÃªcherie",
+      "term": "u) pÃªcherie",
+      "definition": "un ou plusieurs stocks d'espÃ¨ces biologiques marines, d'eau saumÃ¢tre ou d'eau douce ainsi que toute opÃ©ration fondÃ©e sur lesdits stocks qui, sur la base de leurs caractÃ©ristiques gÃ©ographiques, scientifiques, techniques, Ã©conomiques, sociales et/ou rÃ©crÃ©atives, peuvent Ãªtre considÃ©rÃ©es comme constituant une unitÃ© Ã  des fins de conservation et d'amÃ©nagement ;",
+      "source_page": 1,
+      "context": "u) pÃªcherie : un ou plusieurs stocks d'espÃ¨ces biologiques marines, d'eau saumÃ¢tre ou d'eau douce ainsi que toute opÃ©ration fondÃ©e sur lesdits stocks qui, sur la base de leurs caractÃ©ristiques gÃ©ographiques, scientifiques, techniques, Ã©conomiques, sociales et/ou rÃ©crÃ©atives, peuvent Ãªtre considÃ©rÃ©es comme constituant une unitÃ© Ã  des fins de conservation et d'amÃ©nagement ;"
+    },
+    {
+      "id": "def_v)_unitÃ©_de_production_aquacole",
+      "node_id": "def_v)_unitÃ©_de_production_aquacole",
+      "term": "v) unitÃ© de production aquacole",
+      "definition": "toute installation effectuÃ©e dans les eaux continentales ou maritimes ou sur leurs rivages, et destinÃ©e Ã  la pratique de l'aquaculture.",
+      "source_page": 1,
+      "context": "v) unitÃ© de production aquacole : toute installation effectuÃ©e dans les eaux continentales ou maritimes ou sur leurs rivages, et destinÃ©e Ã  la pratique de l'aquaculture."
+    },
+    {
+      "id": "def_titre_ii",
+      "node_id": "def_titre_ii",
+      "term": "TITRE II",
+      "definition": "DES DEFINITIONS",
+      "source_page": 2,
+      "context": "TITRE II : DES DEFINITIONS"
+    },
+    {
+      "id": "def_article_2",
+      "node_id": "def_article_2",
+      "term": "Article 2",
+      "definition": "L'Aire ProtÃ©gÃ©e est dÃ©finie comme tous espaces continentaux ou marins bÃ©nÃ©ficiant de mesures spÃ©ciales de protection et de gestion",
+      "source_page": 2,
+      "context": "Article 2 :L'Aire ProtÃ©gÃ©e est dÃ©finie comme tous espaces continentaux ou marins bÃ©nÃ©ficiant de mesures spÃ©ciales de protection et de gestion"
+    },
+    {
+      "id": "def_article_3",
+      "node_id": "def_article_3",
+      "term": "Article 3",
+      "definition": "La faune est constituÃ©e par tous les animaux sauvages vivant en libertÃ© dans leur milieu naturel ou maintenus en captivitÃ© et classÃ©s, notamment, parmi les mammifÃ¨res, les oiseaux, les reptiles, les batraciens et les poissons y compris les invertÃ©brÃ©s Ã  savoir les insectes, les mollusques, les crustacÃ©s, les arthropodes et autres espÃ¨ces aquatiques.",
+      "source_page": 2,
+      "context": "Article 3 :La faune est constituÃ©e par tous les animaux sauvages vivant en libertÃ© dans leur milieu naturel ou maintenus en captivitÃ© et classÃ©s, notamment, parmi les mammifÃ¨res, les oiseaux, les reptiles, les batraciens et les poissons y compris les invertÃ©brÃ©s Ã  savoir les insectes, les mollusques, les crustacÃ©s, les arthropodes et autres espÃ¨ces aquatiques."
+    },
+    {
+      "id": "def_article_4",
+      "node_id": "def_article_4",
+      "term": "Article 4",
+      "definition": "La pÃ©riode d'exercice de la chasse est l'intervalle de temps pendant lequel la chasse est autorisÃ©e.",
+      "source_page": 2,
+      "context": "Article 4 :La pÃ©riode d'exercice de la chasse est l'intervalle de temps pendant lequel la chasse est autorisÃ©e."
+    },
+    {
+      "id": "def_article_5",
+      "node_id": "def_article_5",
+      "term": "Article 5",
+      "definition": "Le plan de tir reprÃ©sente le nombre maximum d'animaux par espÃ¨ce susceptibles d'Ãªtre prÃ©levÃ©s sans mettre en pÃ©ril la population d'une espÃ¨ce donnÃ©e.",
+      "source_page": 2,
+      "context": "Article 5 :Le plan de tir reprÃ©sente le nombre maximum d'animaux par espÃ¨ce susceptibles d'Ãªtre prÃ©levÃ©s sans mettre en pÃ©ril la population d'une espÃ¨ce donnÃ©e."
+    },
+    {
+      "id": "def_article_6",
+      "node_id": "def_article_6",
+      "term": "Article 6",
+      "definition": "La latitude d'abattage reprÃ©sente le nombre maximum d'individus de chaque espÃ¨ce susceptibles d'Ãªtre abattus ou capturÃ©s par catÃ©gorie de permis de chasse ou de capture.",
+      "source_page": 3,
+      "context": "Article 6 :La latitude d'abattage reprÃ©sente le nombre maximum d'individus de chaque espÃ¨ce susceptibles d'Ãªtre abattus ou capturÃ©s par catÃ©gorie de permis de chasse ou de capture."
+    },
+    {
+      "id": "def_article_36",
+      "node_id": "def_article_36",
+      "term": "Article 36",
+      "definition": "La zone tampon est la bande de largeur d'au moins 5 km qui ceinture l'aire protÃ©gÃ©e",
+      "source_page": 8,
+      "context": "Article 36 : La zone tampon est la bande de largeur d'au moins 5 km qui ceinture l'aire protÃ©gÃ©e"
+    },
+    {
+      "id": "toute activitÃ© d'Ã©levage ou de culture d'organismes aquatiques tels les poissons, mollusques, crustacÃ©s et vÃ©gÃ©taux ;"
+    },
+    {
+      "id": "1"
+    },
+    {
+      "id": "toute personne physique ou morale, propriÃ©taire ou non d'un navire de pÃªche ou d'une embarcation de pÃªche qui en assure l'exploitation ;"
+    },
+    {
+      "id": "bÃ¢timent de navigation utilisÃ© et Ã©quipÃ© pour pÃªcher sur les fleuves, les riviÃ¨res ou les canaux ;"
+    },
+    {
+      "id": "les eaux intÃ©rieures, la mer territoriale et la zone Ã©conomique exclusive telles que dÃ©finies par la lÃ©gislation en vigueur ;"
+    },
+    {
+      "id": "les eaux des fleuves, riviÃ¨res, lacs, lagunes, Ã©tangs, mares, plaines d'inondation et autres plans d'eau naturels ou artificiels, permanents ou non ;"
+    },
+    {
+      "id": "tout moyen flottant utilisÃ© pour l'exercice de la pÃªche continentale ;"
+    },
+    {
+      "id": "tout moyen flottant utilisÃ© pour l'exercice de la pÃªche artisanale maritime ;"
+    },
+    {
+      "id": "toute embarcation impliquÃ©e dans le transport et le commerce de produits de la pÃªche transbordÃ©s Ã  partir de navires et d'embarcations de pÃªche ;"
+    },
+    {
+      "id": "Tout ~~bÃ¢timent~~ ou ~~installation~~ dans lequel des produits de pÃªche sont transformÃ©s, prÃ©parÃ©s, conditionnÃ©s ou stockÃ©s Ã  l'exception des mÃ©thodes traditionnelles de traitement ou de transformation ;"
+    },
+    {
+      "id": "tout moyen naval utilisÃ© et Ã©quipÃ© pour la pÃªche maritime semi industrielle et industrielle ;"
+    },
+    {
+      "id": "tout navire de pÃªche immatriculÃ© en RÃ©publique du BÃ©nin et battant pavillon bÃ©ninois conformÃ©ment Ã  la lÃ©gislation en vigueur ;"
+    },
+    {
+      "id": "tout navire de pÃªche autre qu'un navire de pÃªche bÃ©ninois ;"
+    },
+    {
+      "id": "toute faune ou flore aquatique, Ã  l'exception des reptiles et des mammifÃ¨res ;"
+    },
+    {
+      "id": "toute activitÃ© visant la capture, la cueillette ou la rÃ©colte de toute espÃ¨ce d'organismes aquatiques dans les eaux maritimes ou continentales sous juridiction bÃ©ninoise ;"
+    },
+    {
+      "id": "toute pÃªche pratiquÃ©e dans les eaux continentales telles que dÃ©finies au paragraphe (e) du prÃ©sent article ;"
+    },
+    {
+      "id": "toute pÃªche effectuÃ©e par un navire de pÃªche bÃ©ninois au-delÃ  de la zone Ã©conomique exclusive bÃ©ninoise ;"
+    },
+    {
+      "id": "toute pÃªche pratiquÃ©e dans les eaux maritimes telles que dÃ©finies au paragraphe (d) du prÃ©sent article ;"
+    },
+    {
+      "id": "pÃªche ayant pour objet l'Ã©tude des ressources halieutiques et de leur environnement ou l'expÃ©rimentation de nouveau type de navire, matÃ©riel, engin ou technique de pÃªche ;"
+    },
+    {
+      "id": "pÃªche pratiquÃ©e Ã  des fins rÃ©crÃ©atives et Ã  but non lucratif, Ã  l'exclusion de la pÃªche Ã  la ligne munie d'un hameÃ§on ;"
+    },
+    {
+      "id": "activitÃ© de pÃªche essentiellement tournÃ©e vers l'autoconsommation ;"
+    },
+    {
+      "id": "un ou plusieurs stocks d'espÃ¨ces biologiques marines, d'eau saumÃ¢tre ou d'eau douce ainsi que toute opÃ©ration fondÃ©e sur lesdits stocks qui, sur la base de leurs caractÃ©ristiques gÃ©ographiques, scientifiques, techniques, Ã©conomiques, sociales et/ou rÃ©crÃ©atives, peuvent Ãªtre considÃ©rÃ©es comme constituant une unitÃ© Ã  des fins de conservation et d'amÃ©nagement ;"
+    },
+    {
+      "id": "toute installation effectuÃ©e dans les eaux continentales ou maritimes ou sur leurs rivages, et destinÃ©e Ã  la pratique de l'aquaculture."
+    },
+    {
+      "id": "DES DEFINITIONS"
+    },
+    {
+      "id": "2"
+    },
+    {
+      "id": "L'Aire ProtÃ©gÃ©e est dÃ©finie comme tous espaces continentaux ou marins bÃ©nÃ©ficiant de mesures spÃ©ciales de protection et de gestion"
+    },
+    {
+      "id": "La faune est constituÃ©e par tous les animaux sauvages vivant en libertÃ© dans leur milieu naturel ou maintenus en captivitÃ© et classÃ©s, notamment, parmi les mammifÃ¨res, les oiseaux, les reptiles, les batraciens et les poissons y compris les invertÃ©brÃ©s Ã  savoir les insectes, les mollusques, les crustacÃ©s, les arthropodes et autres espÃ¨ces aquatiques."
+    },
+    {
+      "id": "La pÃ©riode d'exercice de la chasse est l'intervalle de temps pendant lequel la chasse est autorisÃ©e."
+    },
+    {
+      "id": "Le plan de tir reprÃ©sente le nombre maximum d'animaux par espÃ¨ce susceptibles d'Ãªtre prÃ©levÃ©s sans mettre en pÃ©ril la population d'une espÃ¨ce donnÃ©e."
+    },
+    {
+      "id": "La latitude d'abattage reprÃ©sente le nombre maximum d'individus de chaque espÃ¨ce susceptibles d'Ãªtre abattus ou capturÃ©s par catÃ©gorie de permis de chasse ou de capture."
+    },
+    {
+      "id": "3"
+    },
+    {
+      "id": "La zone tampon est la bande de largeur d'au moins 5 km qui ceinture l'aire protÃ©gÃ©e"
+    },
+    {
+      "id": "8"
+    }
+  ],
+  "edges": [
+    {
+      "source": "def_a)_aquaculture",
+      "target": "toute activitÃ© d'Ã©levage ou de culture d'organismes aquatiques tels les poissons, mollusques, crustacÃ©s et vÃ©gÃ©taux ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_a)_aquaculture",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_b)_armateur",
+      "target": "toute personne physique ou morale, propriÃ©taire ou non d'un navire de pÃªche ou d'une embarcation de pÃªche qui en assure l'exploitation ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_b)_armateur",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_c)_bateau_de_pÃªche",
+      "target": "bÃ¢timent de navigation utilisÃ© et Ã©quipÃ© pour pÃªcher sur les fleuves, les riviÃ¨res ou les canaux ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_c)_bateau_de_pÃªche",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_d)_eaux_maritimes",
+      "target": "les eaux intÃ©rieures, la mer territoriale et la zone Ã©conomique exclusive telles que dÃ©finies par la lÃ©gislation en vigueur ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_d)_eaux_maritimes",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_e)_eaux_continentales",
+      "target": "les eaux des fleuves, riviÃ¨res, lacs, lagunes, Ã©tangs, mares, plaines d'inondation et autres plans d'eau naturels ou artificiels, permanents ou non ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_e)_eaux_continentales",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_f)_embarcation_de_pÃªche_continentale",
+      "target": "tout moyen flottant utilisÃ© pour l'exercice de la pÃªche continentale ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_f)_embarcation_de_pÃªche_continentale",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_g)_embarcation_de_pÃªche_maritime_artisanale",
+      "target": "tout moyen flottant utilisÃ© pour l'exercice de la pÃªche artisanale maritime ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_g)_embarcation_de_pÃªche_maritime_artisanale",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_h)_embarcation_de_collecte",
+      "target": "toute embarcation impliquÃ©e dans le transport et le commerce de produits de la pÃªche transbordÃ©s Ã  partir de navires et d'embarcations de pÃªche ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_h)_embarcation_de_collecte",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_i)_~~Ã©tablissement~~_de_traitement_et_de_transformation_des_produits_de_pÃªche",
+      "target": "Tout ~~bÃ¢timent~~ ou ~~installation~~ dans lequel des produits de pÃªche sont transformÃ©s, prÃ©parÃ©s, conditionnÃ©s ou stockÃ©s Ã  l'exception des mÃ©thodes traditionnelles de traitement ou de transformation ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_i)_~~Ã©tablissement~~_de_traitement_et_de_transformation_des_produits_de_pÃªche",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_j)_navire_de_pÃªche",
+      "target": "tout moyen naval utilisÃ© et Ã©quipÃ© pour la pÃªche maritime semi industrielle et industrielle ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_j)_navire_de_pÃªche",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_k)_navire_de_pÃªche_bÃ©ninois",
+      "target": "tout navire de pÃªche immatriculÃ© en RÃ©publique du BÃ©nin et battant pavillon bÃ©ninois conformÃ©ment Ã  la lÃ©gislation en vigueur ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_k)_navire_de_pÃªche_bÃ©ninois",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_l)_navire_de_pÃªche_Ã©tranger",
+      "target": "tout navire de pÃªche autre qu'un navire de pÃªche bÃ©ninois ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_l)_navire_de_pÃªche_Ã©tranger",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_m)_organisme_aquatique",
+      "target": "toute faune ou flore aquatique, Ã  l'exception des reptiles et des mammifÃ¨res ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_m)_organisme_aquatique",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_n)_pÃªche",
+      "target": "toute activitÃ© visant la capture, la cueillette ou la rÃ©colte de toute espÃ¨ce d'organismes aquatiques dans les eaux maritimes ou continentales sous juridiction bÃ©ninoise ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_n)_pÃªche",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_o)_pÃªche_continentale",
+      "target": "toute pÃªche pratiquÃ©e dans les eaux continentales telles que dÃ©finies au paragraphe (e) du prÃ©sent article ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_o)_pÃªche_continentale",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_p)_pÃªche_en_haute_mer",
+      "target": "toute pÃªche effectuÃ©e par un navire de pÃªche bÃ©ninois au-delÃ  de la zone Ã©conomique exclusive bÃ©ninoise ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_p)_pÃªche_en_haute_mer",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_q)_pÃªche_maritime",
+      "target": "toute pÃªche pratiquÃ©e dans les eaux maritimes telles que dÃ©finies au paragraphe (d) du prÃ©sent article ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_q)_pÃªche_maritime",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_r)_pÃªche_de_recherche_scientifique",
+      "target": "pÃªche ayant pour objet l'Ã©tude des ressources halieutiques et de leur environnement ou l'expÃ©rimentation de nouveau type de navire, matÃ©riel, engin ou technique de pÃªche ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_r)_pÃªche_de_recherche_scientifique",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_s)_pÃªche_sportive",
+      "target": "pÃªche pratiquÃ©e Ã  des fins rÃ©crÃ©atives et Ã  but non lucratif, Ã  l'exclusion de la pÃªche Ã  la ligne munie d'un hameÃ§on ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_s)_pÃªche_sportive",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_t)_pÃªche_de_subsistance",
+      "target": "activitÃ© de pÃªche essentiellement tournÃ©e vers l'autoconsommation ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_t)_pÃªche_de_subsistance",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_u)_pÃªcherie",
+      "target": "un ou plusieurs stocks d'espÃ¨ces biologiques marines, d'eau saumÃ¢tre ou d'eau douce ainsi que toute opÃ©ration fondÃ©e sur lesdits stocks qui, sur la base de leurs caractÃ©ristiques gÃ©ographiques, scientifiques, techniques, Ã©conomiques, sociales et/ou rÃ©crÃ©atives, peuvent Ãªtre considÃ©rÃ©es comme constituant une unitÃ© Ã  des fins de conservation et d'amÃ©nagement ;",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_u)_pÃªcherie",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_v)_unitÃ©_de_production_aquacole",
+      "target": "toute installation effectuÃ©e dans les eaux continentales ou maritimes ou sur leurs rivages, et destinÃ©e Ã  la pratique de l'aquaculture.",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_v)_unitÃ©_de_production_aquacole",
+      "target": "1",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_titre_ii",
+      "target": "DES DEFINITIONS",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_titre_ii",
+      "target": "2",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_2",
+      "target": "L'Aire ProtÃ©gÃ©e est dÃ©finie comme tous espaces continentaux ou marins bÃ©nÃ©ficiant de mesures spÃ©ciales de protection et de gestion",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_2",
+      "target": "2",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_3",
+      "target": "La faune est constituÃ©e par tous les animaux sauvages vivant en libertÃ© dans leur milieu naturel ou maintenus en captivitÃ© et classÃ©s, notamment, parmi les mammifÃ¨res, les oiseaux, les reptiles, les batraciens et les poissons y compris les invertÃ©brÃ©s Ã  savoir les insectes, les mollusques, les crustacÃ©s, les arthropodes et autres espÃ¨ces aquatiques.",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_3",
+      "target": "2",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_4",
+      "target": "La pÃ©riode d'exercice de la chasse est l'intervalle de temps pendant lequel la chasse est autorisÃ©e.",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_4",
+      "target": "2",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_5",
+      "target": "Le plan de tir reprÃ©sente le nombre maximum d'animaux par espÃ¨ce susceptibles d'Ãªtre prÃ©levÃ©s sans mettre en pÃ©ril la population d'une espÃ¨ce donnÃ©e.",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_5",
+      "target": "2",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_6",
+      "target": "La latitude d'abattage reprÃ©sente le nombre maximum d'individus de chaque espÃ¨ce susceptibles d'Ãªtre abattus ou capturÃ©s par catÃ©gorie de permis de chasse ou de capture.",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_6",
+      "target": "3",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_36",
+      "target": "La zone tampon est la bande de largeur d'au moins 5 km qui ceinture l'aire protÃ©gÃ©e",
+      "predicate": "means",
+      "confidence": 1.0
+    },
+    {
+      "source": "def_article_36",
+      "target": "8",
+      "predicate": "defined_on_page",
+      "confidence": 1.0
+    }
+  ]
+}

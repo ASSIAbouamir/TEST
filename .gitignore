@@ -1,27 +1,59 @@
-# Data directories
-data_old/
-kg_rag/chroma_db/
-kg_rag/kg_rag.log
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+legal_rag/.env
+Ragas/.deepeval/
 
-# Python cache
+# Python cache/build output
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
 .Python
-*.so
 *.egg
 *.egg-info/
-dist/
 build/
+dist/
 
-# IDE
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Generated indexes and bulky derived artifacts
+indexes_all/
+indexes_global/
+inutile/
+archives/
+audits_complets/
+
+# Local data snapshots
+data_old/
+
+# App/tooling
+.qodo/
+.streamlit/secrets.toml
 .vscode/
 .idea/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
 *~
 
-# OS
-.DS_Store
-Thumbs.db
+# Databases
+users.db
+chroma_db/
+
+# Log files
+*.log
+
+# Model caches
+model_cache_v2/
+
+# Local data uploads and outputs
+data/
+data_processed/

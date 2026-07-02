@@ -1,0 +1,3959 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal AI Hub - Dashboard & Assistant RAG Intelligent</title>
+    <meta name="description"
+        content="Plateforme intelligente d'automatisation, de RAG multi-agents et de veille juridique pour cabinets d'avocats et entreprises.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet.js Map CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <style>
+        :root {
+            --bg-base: #080710;
+            --bg-surface: rgba(255, 255, 255, 0.05);
+            --bg-surface-hover: rgba(255, 255, 255, 0.08);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-glow: rgba(124, 92, 220, 0.25);
+
+            --primary: #7c5cdc;
+            --primary-glow: rgba(124, 92, 220, 0.4);
+            --primary-hover: #9670f5;
+            --secondary: #00f2fe;
+            --secondary-glow: rgba(0, 242, 254, 0.3);
+
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dark: #111827;
+
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Elements globaux */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: radial-gradient(circle at 50% 50%, #0d0726 0%, #060312 60%, #010005 100%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Scrollbar customisé */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(1, 0, 5, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Particules / Arrière-plan décoratif Galaxy */
+        .ambient-bg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(160px);
+            opacity: 0.18;
+            mix-blend-mode: screen;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -20%;
+            left: -10%;
+            animation: float-nebula-1 30s infinite ease-in-out alternate;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation: float-nebula-2 35s infinite ease-in-out alternate-reverse;
+        }
+
+        .orb-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            animation: float-nebula-3 40s infinite ease-in-out alternate;
+        }
+
+        .orb-4 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+            bottom: 30%;
+            left: 10%;
+            animation: float-nebula-4 45s infinite ease-in-out alternate-reverse;
+        }
+
+        .galaxy-star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+            animation: twinkle infinite ease-in-out alternate;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.15;
+                transform: scale(0.7);
+            }
+
+            100% {
+                opacity: 0.95;
+                transform: scale(1.3);
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 10px var(--secondary-glow);
+            }
+        }
+
+        @keyframes float-nebula-1 {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(80px, 60px) scale(1.08) rotate(180deg);
+            }
+
+            100% {
+                transform: translate(-40px, 120px) scale(0.92) rotate(360deg);
+            }
+        }
+
+        @keyframes float-nebula-2 {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-100px, -40px) scale(1.15) rotate(-180deg);
+            }
+
+            100% {
+                transform: translate(60px, -90px) scale(0.95) rotate(-360deg);
+            }
+        }
+
+        @keyframes float-nebula-3 {
+            0% {
+                transform: translate(0, 0) scale(0.9);
+            }
+
+            50% {
+                transform: translate(-60px, 80px) scale(1.1);
+            }
+
+            100% {
+                transform: translate(70px, -50px) scale(0.95);
+            }
+        }
+
+        @keyframes float-nebula-4 {
+            0% {
+                transform: translate(0, 0) scale(1.05);
+            }
+
+            50% {
+                transform: translate(100px, -70px) scale(0.92);
+            }
+
+            100% {
+                transform: translate(-50px, 60px) scale(1.02);
+            }
+        }
+
+        /* LOGIN GATEWAY (Écran de Connexion) */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+            z-index: 10;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .login-card:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 20px 50px rgba(124, 92, 220, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 36px;
+        }
+
+        .logo-icon {
+            font-size: 48px;
+            filter: drop-shadow(0 0 12px var(--primary-glow));
+        }
+
+        .logo-title {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            color: white;
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px var(--primary-glow);
+            margin-top: 12px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 92, 220, 0.6);
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #4f46e5 100%);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-hints {
+            margin-top: 28px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .hint-item {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .hint-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .hint-badge {
+            background: rgba(124, 92, 220, 0.15);
+            color: #c084fc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-family: monospace;
+            cursor: pointer;
+            margin: 0 2px;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+            text-align: left;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border-left: 3px solid var(--danger);
+        }
+
+
+        /* MAIN INTERFACE (WORKSPACE) */
+        .workspace {
+            display: none;
+            /* Rendu visible après authentification */
+            flex: 1;
+            display: flex;
+            min-height: 100vh;
+            z-index: 10;
+        }
+
+        /* BARRE LATÉRALE DE NAVIGATION (SIDEBAR) */
+        .sidebar {
+            width: 280px;
+            background: rgba(8, 7, 16, 0.2) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            position: fixed;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .sidebar-logo {
+            font-size: 32px;
+            filter: drop-shadow(0 0 8px var(--primary-glow));
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            color: var(--text-main);
+            background: var(--bg-surface);
+        }
+
+        .nav-item.active {
+            color: white;
+            background: rgba(124, 92, 220, 0.15);
+            border-color: rgba(124, 92, 220, 0.25);
+            box-shadow: 0 4px 12px rgba(124, 92, 220, 0.05);
+        }
+
+        .nav-item-icon {
+            font-size: 18px;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-top: auto;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+        }
+
+        .profile-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-role {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .role-badge {
+            background: var(--primary);
+            color: white;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 6px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+
+        /* CONTENANT PRINCIPAL DES TABS */
+        .content-area {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px 48px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HEADER DE SECTION */
+        .section-title-wrap {
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 50%, #d8b4fe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .system-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .system-pill-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+                box-shadow: 0 0 12px var(--success);
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 0.6;
+            }
+        }
+
+
+        /* TAB 1: TABLEAU DE BORD (STATS) */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .kpi-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .kpi-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(124, 92, 220, 0.1);
+        }
+
+        .kpi-icon-container {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .kpi-blue {
+            background: rgba(124, 92, 220, 0.15);
+            border: 1px solid rgba(124, 92, 220, 0.2);
+            color: var(--primary);
+        }
+
+        .kpi-cyan {
+            background: rgba(0, 242, 254, 0.15);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            color: var(--secondary);
+        }
+
+        .kpi-gold {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .kpi-green {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .kpi-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .kpi-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .kpi-val {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+        }
+
+        /* Grille de Graphiques */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 28px;
+            margin-bottom: 24px;
+        }
+
+        .chart-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-header {
+            margin-bottom: 24px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .chart-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .canvas-container {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* TAB 2: WORKSPACE CHATBOT RAG JURIDIQUE */
+        .rag-workspace {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 28px;
+            height: calc(100vh - 160px);
+            min-height: 500px;
+        }
+
+        /* Panel Pipeline à gauche */
+        .pipeline-panel {
+            width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .vertical-stepper {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            flex: 1;
+            padding: 8px 0;
+            overflow-y: auto;
+        }
+
+        .vertical-step {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            transition: var(--transition);
+            position: relative;
+            animation: bubbleIn 0.3s ease-out;
+        }
+
+        .vertical-step.active {
+            border-color: var(--primary);
+            background: rgba(124, 92, 220, 0.05);
+            box-shadow: 0 0 15px rgba(124, 92, 220, 0.15);
+        }
+
+        .vertical-step.completed {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.04);
+        }
+
+        .vstep-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+
+        .vstep-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .vertical-step.active .vstep-icon {
+            background: rgba(124, 92, 220, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(124, 92, 220, 0.4);
+        }
+
+        .vertical-step.completed .vstep-icon {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--success);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .vstep-title-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .vstep-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .vstep-badge {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        .vertical-step.active .vstep-badge {
+            background: rgba(124, 92, 220, 0.2);
+            color: #c084fc;
+        }
+
+        .vertical-step.completed .vstep-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .vstep-body {
+            padding-left: 52px;
+        }
+
+        .vstep-status {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .vertical-step.active .vstep-status {
+            color: var(--text-main);
+        }
+
+        .vertical-connector {
+            width: 2px;
+            height: 20px;
+            background: var(--border-color);
+            margin: 4px 0 4px 35px;
+            transition: var(--transition);
+        }
+
+        .vertical-connector.active {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--border-color) 100%);
+        }
+
+        .vertical-connector.completed {
+            background: var(--success);
+        }
+
+        .control-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .control-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .dropdown-select {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dropdown-select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* Personas d'Agents */
+        .agent-persona-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .agent-card {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .agent-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .agent-card.active {
+            background: rgba(124, 92, 220, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(124, 92, 220, 0.15);
+        }
+
+        .agent-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .agent-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+
+        .agent-card.active .agent-bullet {
+            background: var(--primary);
+            box-shadow: 0 0 6px var(--primary);
+        }
+
+        .agent-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .agent-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Hub de dialogue (Chat Area) */
+        .chat-hub {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-header-bar {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-active-agent {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-agent-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .chat-agent-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .chat-agent-status {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .chat-history {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-bubble {
+            max-width: 75%;
+            padding: 16px 20px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            animation: bubbleIn 0.3s ease-out;
+        }
+
+        @keyframes bubbleIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .bubble-user {
+            background: linear-gradient(135deg, var(--primary) 0%, #5850ec 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 15px rgba(124, 92, 220, 0.2);
+        }
+
+        .bubble-bot {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .bubble-bot p {
+            margin-bottom: 10px;
+        }
+
+        .bubble-bot p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bubble-bot ul,
+        .bubble-bot ol {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Multi-Agent Stepper Pipeline */
+        .agent-stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 18px 24px;
+            margin-bottom: 16px;
+            gap: 12px;
+            animation: bubbleIn 0.3s ease-out;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-bottom: 6px;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+            transition: var(--transition);
+        }
+
+        .step-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2px;
+        }
+
+        .step-status {
+            font-size: 9px;
+            color: var(--text-muted);
+            max-width: 140px;
+            line-height: 1.3;
+        }
+
+        .step-connector {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            margin-top: -30px;
+            box-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Sources intégrées sous le message */
+        .bubble-sources-summary {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bubble-sources-heading {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .source-tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .source-tag {
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            color: #38bdf8;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .source-tag:hover {
+            background: rgba(0, 242, 254, 0.15);
+            border-color: var(--secondary);
+        }
+
+        /* Définitions intégrées */
+        .bubble-definitions-summary {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .def-title {
+            color: var(--warning);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* Dialogue en cours / Indicateur d'écriture */
+        .typing-indicator {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: 16px;
+            display: none;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Panneau de saisie */
+        .chat-input-bar {
+            padding: 18px 24px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .chat-input-field {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: white;
+            font-family: var(--font-main);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .chat-input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .chat-send-btn {
+            background: var(--primary);
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px var(--primary-glow);
+            flex-shrink: 0;
+        }
+
+        .chat-send-btn:hover {
+            background: var(--primary-hover);
+            transform: scale(1.05);
+            box-shadow: 0 4px 14px rgba(124, 92, 220, 0.5);
+        }
+
+
+        /* RAG RIGHT PANEL: SOURCES / DETAIL DU CONTEXTE */
+        .rag-detail-drawer {
+            position: fixed;
+            width: 480px;
+            height: 100vh;
+            top: 0;
+            right: -480px;
+            background: rgba(8, 7, 16, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--border-color);
+            z-index: 200;
+            padding: 40px 32px;
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rag-detail-drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .drawer-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .drawer-close:hover {
+            color: white;
+        }
+
+        .drawer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Cartes de documents sources */
+        .source-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .source-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .source-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .source-country-badge {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .source-relevance {
+            color: var(--success);
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .source-clause-id {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        .source-card-body {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+
+        /* TAB 3: VEILLE RÉGLEMENTAIRE (MONITORING) */
+        .monitor-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        .monitor-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 14px 20px;
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .action-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124, 92, 220, 0.4);
+        }
+
+        .action-button:disabled {
+            background: var(--border-color);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .status-table td {
+            padding: 12px 0;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .status-table td:first-child {
+            color: var(--text-muted);
+            font-weight: 500;
+            width: 40%;
+        }
+
+        .status-table td:last-child {
+            color: white;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-running {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .badge-idle {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* Tableau des Rapports */
+        .reports-table-container {
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        .reports-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .reports-table th {
+            padding: 14px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reports-table td {
+            padding: 16px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-color);
+            color: white;
+        }
+
+        .reports-table tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .open-report-btn {
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            color: var(--secondary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .open-report-btn:hover {
+            background: var(--secondary);
+            color: var(--text-dark);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Visualiseur de Rapport Intégré */
+        .report-overlay {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .report-modal {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .report-modal-header {
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .report-modal-title {
+            color: #1e293b;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .report-modal-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .report-modal-close:hover {
+            color: #0f172a;
+        }
+
+        .report-iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+
+        /* LEAFLET GLASSMORPHIC DARK MAP POPUPS & GLOW BADGES */
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-tip {
+            background: rgba(18, 17, 31, 0.85) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(124, 92, 220, 0.35) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+            color: var(--text-main) !important;
+            border-radius: 12px !important;
+        }
+
+        .leaflet-popup-content {
+            margin: 14px 18px !important;
+            line-height: 1.5 !important;
+        }
+
+        .leaflet-popup-close-button {
+            color: var(--text-muted) !important;
+            font-size: 16px !important;
+            padding: 8px !important;
+        }
+
+        .leaflet-popup-close-button:hover {
+            color: #ffffff !important;
+        }
+
+        /* Badge marker styles */
+        .custom-leaflet-icon {
+            background: transparent !important;
+            border: none !important;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .map-badge-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(22, 20, 38, 0.82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(124, 92, 220, 0.5);
+            border-radius: 20px;
+            padding: 6px 12px;
+            color: #ffffff;
+            font-family: var(--font-main);
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(124, 92, 220, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            white-space: nowrap;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content !important;
+            transform: translate(-50%, -50%);
+        }
+
+        .map-badge-marker:hover {
+            transform: translate(-50%, -50%) scale(1.08);
+            border-color: #6366f1;
+            /* Indigo */
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            background: rgba(124, 92, 220, 0.95);
+        }
+
+        .map-badge-divider {
+            color: rgba(255, 255, 255, 0.2);
+            margin: 0 6px;
+        }
+
+        .map-badge-pulse {
+            position: absolute;
+            inset: -4px;
+            border: 1.5px solid #7c5cdc;
+            /* Violet Néon */
+            border-radius: 24px;
+            animation: map-badge-pulsate 2.2s infinite;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        @keyframes map-badge-pulsate {
+            0% {
+                transform: scale(0.96);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.22);
+            }
+        }
+
+        /* RESPONSIVE LAYOUT */
+        @media (max-width: 1100px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rag-workspace {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .monitor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Arrière-plan Ambiant Néon -->
+    <div class="ambient-bg">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+        <div class="glow-orb orb-4"></div>
+    </div>
+
+    <!-- 1. AUTHENTICATION / LOGIN PAGE -->
+    <div class="login-container" id="login-gate">
+        <div class="login-card">
+            <div class="logo-section">
+                <span class="logo-icon">⚖️</span>
+                <h1 class="logo-title">LEGAL AI HUB</h1>
+                <p class="logo-subtitle">Système RAG Multi-Agents & Veille Législative</p>
+            </div>
+
+            <div class="error-message" id="login-error"></div>
+
+            <div class="form-group">
+                <label class="form-label" for="username">Nom d'utilisateur</label>
+                <div class="input-wrapper">
+                    <input class="form-input" type="text" id="username" placeholder="ex: avocat"
+                        autocomplete="username">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Mot de passe</label>
+                <div class="input-wrapper">
+                    <input class="form-input" type="password" id="password" placeholder="••••••••"
+                        autocomplete="current-password">
+                </div>
+            </div>
+
+            <button class="login-btn" id="login-submit-btn" onclick="handleLogin()">S'authentifier</button>
+
+            <div class="login-hints">
+                <div class="hint-item">Accès Avocat : <span class="hint-badge"
+                        onclick="fillCredentials('avocat')">avocat/avocat</span></div>
+                <div class="hint-item">Accès Admin : <span class="hint-badge"
+                        onclick="fillCredentials('admin')">admin/admin</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. MAIN SYSTEM WORKSPACE (Visible after auth) -->
+    <div class="workspace" id="main-workspace">
+
+        <!-- SIDEBAR DE NAVIGATION -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-logo">⚖️</span>
+                <span class="sidebar-title">Legal AI Hub</span>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active" id="nav-dash" onclick="switchTab('dash')">
+                    <span class="nav-item-icon">📊</span>
+                    <span>Tableau de Bord</span>
+                </div>
+                <div class="nav-item" id="nav-rag" onclick="switchTab('rag')">
+                    <span class="nav-item-icon">💬</span>
+                    <span>Assistant RAG</span>
+                </div>
+                <div class="nav-item" id="nav-monitor" onclick="switchTab('monitor')" style="display:none;">
+                    <span class="nav-item-icon">🔍</span>
+                    <span>Veille Automatique</span>
+                </div>
+                <div class="nav-item" id="nav-upload" onclick="switchTab('upload')" style="display:none;">
+                    <span class="nav-item-icon">📤</span>
+                    <span>Importateur PDF</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-profile">
+                <div class="profile-info">
+                    <span class="profile-name" id="user-display-name">Utilisateur</span>
+                    <span class="profile-role" id="user-display-role">
+                        <span class="role-badge" id="role-badge-el">user</span>
+                    </span>
+                </div>
+                <button class="logout-btn" id="admin-toggle-btn" onclick="toggleAdminLogin()" title="Connexion Admin"
+                    style="font-size:13px; padding:8px; background:rgba(124,92,220,0.15); border:1px solid rgba(124,92,220,0.3); border-radius:8px; color:#c084fc; cursor:pointer;">
+                    🔑 Admin
+                </button>
+            </div>
+            <!-- Modal Admin Login -->
+            <div id="admin-modal"
+                style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(8px);">
+                <div
+                    style="background:#12111f; border:1px solid rgba(124,92,220,0.4); border-radius:20px; padding:40px; width:360px; box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+                    <h2 style="font-size:18px; font-weight:800; color:white; margin-bottom:8px;">🔑 Connexion Admin</h2>
+                    <p style="font-size:13px; color:#9ca3af; margin-bottom:24px;">Accès réservé aux administrateurs.</p>
+                    <div style="margin-bottom:16px;">
+                        <input id="admin-user-input" class="form-input" type="text" placeholder="Nom d'utilisateur"
+                            style="margin-bottom:12px;">
+                        <input id="admin-pass-input" class="form-input" type="password" placeholder="Mot de passe">
+                    </div>
+                    <div id="admin-login-error"
+                        style="color:#ef4444; font-size:12px; margin-bottom:12px; display:none;"></div>
+                    <div style="display:flex; gap:12px;">
+                        <button onclick="submitAdminLogin()"
+                            style="flex:1; background:linear-gradient(135deg,#7c5cdc,#6366f1); border:none; border-radius:10px; padding:12px; color:white; font-weight:600; cursor:pointer; font-size:14px;">Connexion</button>
+                        <button onclick="closeAdminModal()"
+                            style="flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px; color:#9ca3af; cursor:pointer; font-size:14px;">Annuler</button>
+                    </div>
+                    <div
+                        style="margin-top:16px; padding:12px; background:rgba(255,255,255,0.02); border-radius:8px; border:1px dashed rgba(255,255,255,0.1);">
+                        <span style="font-size:11px; color:#6b7280;">Identifiants : <code
+                                style="color:#c084fc;">admin / admin</code></span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ZONE DE CONTENU -->
+        <main class="content-area">
+
+            <!-- TAB 1: TABLEAU DE BORD (STATS JURIDIQUES) -->
+            <section class="tab-panel active" id="panel-dash">
+                <div class="section-title-wrap">
+                    <div>
+                        <h1 class="section-h1">Tableau de Bord</h1>
+                        <p class="section-desc">50 documents juridiques • 17 juridictions francophones • Droit de l'environnement marin</p>
+                    </div>
+                    <div class="system-pill">
+                        <span class="system-pill-dot"></span>
+                        <span id="rag-status-text">Pipeline RAG Actif</span>
+                    </div>
+                </div>
+
+                <!-- LIGNE DES KPIS -->
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="kpi-icon-container kpi-blue">📖</div>
+                        <div class="kpi-meta">
+                            <span class="kpi-label">Clauses</span>
+                            <span class="kpi-val" id="stat-total-clauses">7 943</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon-container kpi-cyan">🌍</div>
+                        <div class="kpi-meta">
+                            <span class="kpi-label">Juridictions</span>
+                            <span class="kpi-val" id="stat-countries">17</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon-container kpi-gold">📁</div>
+                        <div class="kpi-meta">
+                            <span class="kpi-label">Domaines thématiques</span>
+                            <span class="kpi-val" id="stat-themes">4</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon-container kpi-green">⚖️</div>
+                        <div class="kpi-meta">
+                            <span class="kpi-label">Documents Juridiques</span>
+                            <span class="kpi-val" id="stat-total-documents">50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRILLE DE GRAPHIQUES -->
+                <div class="chart-grid">
+                    <!-- Graphique 1: Themes -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2 class="chart-title">Répartition par Thème</h2>
+                            <p class="chart-subtitle">Distribution du volume de clauses par sujet environnemental.</p>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="themeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Graphique 2: Pays -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2 class="chart-title">Distribution par Pays</h2>
+                            <p class="chart-subtitle">Nombre de clauses normatives extraites pour chaque pays d'Afrique.
+                            </p>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="countryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIGNE AVANCÉE : CARTE GÉOGRAPHIQUE & METRIQUES DE QUALITÉ -->
+                <div class="chart-grid" style="margin-top: 24px; grid-template-columns: 1fr;">
+                    <!-- Carte interactive Leaflet -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2 class="chart-title">Visualisation Géographique Sémantique</h2>
+                            <p class="chart-subtitle">Distribution interactive de l'intensité normative par région.</p>
+                        </div>
+                        <div id="geoMap"
+                            style="height: 320px; border-radius: 16px; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-color); overflow: hidden; margin-top: 16px; position: relative; z-index: 1;">
+                            <!-- Legend 1: Vertical scale -->
+                            <div class="map-legend-scale"
+                                style="position: absolute; bottom: 12px; left: 12px; z-index: 1000; background: rgba(18, 17, 31, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(124, 92, 220, 0.25); border-radius: 10px; padding: 10px; display: flex; gap: 8px; align-items: center; color: var(--text-main); font-family: var(--font-main); font-size: 10px; pointer-events: none; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                                <div
+                                    style="width: 10px; height: 100px; background: linear-gradient(to top, #162e4c, #1e4c75, #4f728c, #8c9c6f, #bfa53f, #d49b2c); border-radius: 2px;">
+                                </div>
+                                <div
+                                    style="display: flex; flex-direction: column; justify-content: space-between; height: 100px; font-weight: 700; color: var(--text-muted); line-height: 1;">
+                                    <span>5000</span>
+                                    <span>4000</span>
+                                    <span>3000</span>
+                                    <span>2000</span>
+                                    <span>1000</span>
+                                    <span>100</span>
+                                </div>
+                            </div>
+
+                            <!-- Legend 2: Checkboxes/Filters -->
+                            <div class="map-legend-filters"
+                                style="position: absolute; bottom: 12px; left: 88px; z-index: 1000; background: rgba(18, 17, 31, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(124, 92, 220, 0.25); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 8px; color: var(--text-main); font-family: var(--font-main); font-size: 10px; pointer-events: none; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                                <div style="display: flex; align-items: center; gap: 6px;">
+                                    <div
+                                        style="width: 10px; height: 10px; background: #162e4c; border-radius: 2px; border: 1px solid rgba(255,255,255,0.15);">
+                                    </div>
+                                    <span style="font-weight: 700; color: var(--text-muted);">Faible</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 6px;">
+                                    <div
+                                        style="width: 10px; height: 10px; background: #d49b2c; border-radius: 2px; border: 1px solid rgba(255,255,255,0.15);">
+                                    </div>
+                                    <span style="font-weight: 700; color: var(--text-muted);">Forte</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carte des indicateurs de qualité -->
+                    <div class="chart-card" style="display: none;">
+                        <div class="chart-header">
+                            <h2 class="chart-title">Qualité & Statistiques du Corpus</h2>
+                            <p class="chart-subtitle">Garantie scientifique et volumétrie d'extraction IA.</p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+                            <div
+                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 13px;">Autorités Détectées</span>
+                                <span id="quality-authorities"
+                                    style="color: var(--secondary); font-weight: 700; font-size: 14px;">-</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 13px;">Sanctions & Amendes</span>
+                                <span id="quality-penalties"
+                                    style="color: var(--success); font-weight: 700; font-size: 14px;">-</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 13px;">Renvois Validés (Graphe)</span>
+                                <span id="quality-references"
+                                    style="color: var(--primary-hover); font-weight: 700; font-size: 14px;">-</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 13px;">Longueur moyenne</span>
+                                <span id="quality-length"
+                                    style="color: var(--text-main); font-weight: 700; font-size: 14px;">-</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 13px;">Couverture Temporelle (Lois/Règl.)</span>
+                                <span id="quality-temporal"
+                                    style="color: #00f2fe; font-weight: 700; font-size: 14px;">-</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 13px;">Précision de l'Audit
+                                    (Triad)</span>
+                                <span id="quality-accuracy"
+                                    style="color: var(--warning); font-weight: 800; font-size: 14px;">94.5%</span>
+                            </div>
+                            <!-- Métriques d'Évaluation Scientifique -->
+                            <div
+                                style="margin-top: 10px; padding: 12px; background: rgba(124, 92, 220, 0.08); border: 1px dashed rgba(124, 92, 220, 0.25); border-radius: 12px;">
+                                <h4
+                                    style="font-size: 11px; font-weight: 800; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
+                                    Évaluation Scientifique</h4>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                        <span style="color: var(--text-muted);">Banc d'Essai Experts</span>
+                                        <span style="color: var(--text-main); font-weight: 700;">263 QA pairs / 17
+                                            Pays</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                        <span style="color: var(--text-muted);">Exactitude des Citations</span>
+                                        <span style="color: var(--success); font-weight: 700;">93.9% (vs 25.9%
+                                            NaiveRAG)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                        <span style="color: var(--text-muted);">BERTScore F1 (Chasse Baleine)</span>
+                                        <span style="color: var(--secondary); font-weight: 700;">0.882 (vs 0.376
+                                            NaiveRAG)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                        <span style="color: var(--text-muted);">BERTScore F1 (Hydrocarbures)</span>
+                                        <span style="color: var(--secondary); font-weight: 700;">0.807 (vs 0.379
+                                            NaiveRAG)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Métriques d'Automatisation -->
+                            <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 12px;">
+                                <h3
+                                    style="font-size: 13px; font-weight: 800; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(167, 139, 250, 0.2); padding-bottom: 6px; margin-bottom: 4px;">
+                                    📈 Statistiques d'Automatisation</h3>
+
+                                <!-- 1. Consommation et coûts -->
+                                <div
+                                    style="padding: 12px; background: rgba(124, 92, 220, 0.06); border: 1px dashed rgba(124, 92, 220, 0.25); border-radius: 12px;">
+                                    <h4
+                                        style="font-size: 11px; font-weight: 800; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                                        💵 1. Consommation & Coûts</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Tokens (Prompt / Compl.)</span>
+                                            <span id="auto-tokens" style="color: var(--text-main); font-weight: 700;">0
+                                                / 0</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Coût API Estimé</span>
+                                            <span id="auto-cost"
+                                                style="color: var(--success); font-weight: 700;">$0.0000</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Qualité et performance -->
+                                <div
+                                    style="padding: 12px; background: rgba(16, 185, 129, 0.06); border: 1px dashed rgba(16, 185, 129, 0.25); border-radius: 12px;">
+                                    <h4
+                                        style="font-size: 11px; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                                        🧹 2. Qualité & Nettoyage</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Caractères (Orig. / Nettoyés)</span>
+                                            <span id="auto-chars" style="color: var(--text-main); font-weight: 700;">0 /
+                                                0</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Caractères Supprimés</span>
+                                            <span id="auto-chars-removed"
+                                                style="color: var(--danger); font-weight: 700;">0</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Clauses (Avant / Après
+                                                fusion)</span>
+                                            <span id="auto-clauses" style="color: var(--text-main); font-weight: 700;">0
+                                                / 0</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Clauses Fusionnées</span>
+                                            <span id="auto-clauses-merged"
+                                                style="color: var(--success); font-weight: 700;">0</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Taux de Compression</span>
+                                            <span id="auto-compression"
+                                                style="color: var(--secondary); font-weight: 700;">0.0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Stabilité et fiabilité -->
+                                <div
+                                    style="padding: 12px; background: rgba(0, 242, 254, 0.06); border: 1px dashed rgba(0, 242, 254, 0.25); border-radius: 12px;">
+                                    <h4
+                                        style="font-size: 11px; font-weight: 800; color: #00f2fe; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                                        ⏱️ 3. Performance des étapes</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Temps de Traitement Total</span>
+                                            <span id="auto-time"
+                                                style="color: var(--secondary); font-weight: 700;">0.0s</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Moyenne LlamaParse / Doc</span>
+                                            <span id="auto-avg-llama"
+                                                style="color: var(--text-main); font-weight: 700;">0.0s</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Moyenne Groq LLM / Doc</span>
+                                            <span id="auto-avg-groq"
+                                                style="color: var(--text-main); font-weight: 700;">0.0s</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Moyenne Post-Process / Doc</span>
+                                            <span id="auto-avg-post"
+                                                style="color: var(--text-main); font-weight: 700;">0.0s</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                            <span style="color: var(--text-muted);">Moyenne Totale / Doc</span>
+                                            <span id="auto-avg-total"
+                                                style="color: var(--secondary); font-weight: 700;">0.0s</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+
+            <!-- TAB 2: ASSISTANT RAG INTERACTIF (CHATBOT) -->
+            <section class="tab-panel" id="panel-rag">
+                <div class="section-title-wrap">
+                    <div>
+                        <h1 class="section-h1">Assistant RAG Intelligent</h1>
+                        <p class="section-desc">Recherche récursive multi-agents à travers les clauses législatives.</p>
+                    </div>
+                </div>
+
+                <div class="rag-workspace">
+
+                    <!-- PANNEAU DE GAUCHE : FILTRES & PERSONAS -->
+                    <!-- PANNEAU DE GAUCHE : VISUALISATION DU PIPELINE MULTI-AGENTS -->
+                    <div class="pipeline-panel" id="pipeline-monitor-panel">
+                        <!-- Sélecteur de pays RAG (Caché selon la demande de l'utilisateur) -->
+                        <div class="control-box" style="display: none;">
+                            <h3 class="control-title"
+                                style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                <span style="font-size: 16px;">🌍</span> Zone Géographique
+                            </h3>
+                            <select id="rag-filter-country" class="dropdown-select">
+                                <option value="Tous" selected>Tous les pays (Aiguillage Auto)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-box"
+                            style="flex: 1; display: flex; flex-direction: column; gap: 20px; min-height: 0;">
+                            <h3 class="control-title" style="display: flex; align-items: center; gap: 8px;">
+                                <span>⚡</span> PIPELINE COLLABORATIF
+                            </h3>
+
+                            <div class="vertical-stepper">
+                                <!-- Step 1: Supervisor Agent (Évaluation) -->
+                                <div class="vertical-step active" id="vstep-evaluation">
+                                    <div class="vstep-header">
+                                        <div class="vstep-icon">⚖️</div>
+                                        <div class="vstep-title-wrap">
+                                            <span class="vstep-name">Supervisor Agent (Évaluation)</span>
+                                            <span class="vstep-badge">EVAL</span>
+                                        </div>
+                                    </div>
+                                    <div class="vstep-body">
+                                        <p class="vstep-status" id="vstep-status-evaluation">En attente...</p>
+                                    </div>
+                                </div>
+
+                                <div class="vertical-connector" id="vconn-evaluation"></div>
+
+                                <!-- Step 2: Definition Agent -->
+                                <div class="vertical-step" id="vstep-definition">
+                                    <div class="vstep-header">
+                                        <div class="vstep-icon">💡</div>
+                                        <div class="vstep-title-wrap">
+                                            <span class="vstep-name">Definition Agent</span>
+                                            <span class="vstep-badge">DEFINITIONS</span>
+                                        </div>
+                                    </div>
+                                    <div class="vstep-body">
+                                        <p class="vstep-status" id="vstep-status-definition">En attente...</p>
+                                    </div>
+                                </div>
+
+                                <div class="vertical-connector" id="vconn-definition"></div>
+
+                                <!-- Step 3: Reference Detector Agent -->
+                                <div class="vertical-step" id="vstep-detection">
+                                    <div class="vstep-header">
+                                        <div class="vstep-icon">🎯</div>
+                                        <div class="vstep-title-wrap">
+                                            <span class="vstep-name">Reference Detector Agent</span>
+                                            <span class="vstep-badge">DETECTION</span>
+                                        </div>
+                                    </div>
+                                    <div class="vstep-body">
+                                        <p class="vstep-status" id="vstep-status-detection">En attente...</p>
+                                    </div>
+                                </div>
+
+                                <div class="vertical-connector" id="vconn-detection"></div>
+
+                                <!-- Step 4: Cross-Reference Resolution Agent -->
+                                <div class="vertical-step" id="vstep-resolution">
+                                    <div class="vstep-header">
+                                        <div class="vstep-icon">🔗</div>
+                                        <div class="vstep-title-wrap">
+                                            <span class="vstep-name">Cross-Reference Resolution Agent</span>
+                                            <span class="vstep-badge">RESOLUTION</span>
+                                        </div>
+                                    </div>
+                                    <div class="vstep-body">
+                                        <p class="vstep-status" id="vstep-status-resolution">En attente...</p>
+                                    </div>
+                                </div>
+
+                                <div class="vertical-connector" id="vconn-resolution"></div>
+
+                                <!-- Step 5: Supervisor Agent (Complétude) -->
+                                <div class="vertical-step" id="vstep-completeness">
+                                    <div class="vstep-header">
+                                        <div class="vstep-icon">🔄</div>
+                                        <div class="vstep-title-wrap">
+                                            <span class="vstep-name">Supervisor Agent (Complétude)</span>
+                                            <span class="vstep-badge">CONTROL</span>
+                                        </div>
+                                    </div>
+                                    <div class="vstep-body">
+                                        <p class="vstep-status" id="vstep-status-completeness">En attente...</p>
+                                    </div>
+                                </div>
+
+                                <div class="vertical-connector" id="vconn-completeness"></div>
+
+                                <!-- Step 6: Answering Agent -->
+                                <div class="vertical-step" id="vstep-answering">
+                                    <div class="vstep-header">
+                                        <div class="vstep-icon">📝</div>
+                                        <div class="vstep-title-wrap">
+                                            <span class="vstep-name">Answering Agent</span>
+                                            <span class="vstep-badge">SYNTHESIS</span>
+                                        </div>
+                                    </div>
+                                    <div class="vstep-body">
+                                        <p class="vstep-status" id="vstep-status-answering">En attente...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANNEAU DE DROITE : INTERFACE CHAT -->
+                    <div class="chat-hub">
+                        <div class="chat-header-bar">
+                            <div class="chat-active-agent">
+                                <div class="chat-agent-avatar">🤖</div>
+                                <div>
+                                    <div class="chat-agent-title" id="chat-current-agent-title">Pipeline Collaboratif
+                                        Multi-Agents</div>
+                                    <div class="chat-agent-status">Orchestration IA active</div>
+                                </div>
+                            </div>
+                            <!-- Bouton pour voir les sources -->
+                            <button class="open-report-btn" id="open-sources-drawer-btn" style="display:none;"
+                                onclick="toggleSourcesDrawer(true)">
+                                📄 Afficher les Sources (<span id="sources-count-badge">0</span>)
+                            </button>
+                        </div>
+
+                        <!-- Historique du Chat -->
+                        <div class="chat-history" id="chat-log">
+                            <div class="chat-bubble bubble-bot">
+                                <p>Bonjour. Je suis votre assistant juridique intelligent.</p>
+                                <p>Je peux explorer en profondeur les clauses législatives complexes relatives à la
+                                    protection de l'environnement (baleines, oiseaux marins, hydrocarbures) dans les
+                                    pays de la zone. Quelle est votre question ?</p>
+                                <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;">
+                                    <span class="source-tag"
+                                        onclick="prefillQuestion('Quelles sont les sanctions pour chasse illégale de baleines au Bénin ?')">Sanctions
+                                        Baleines Bénin</span>
+                                    <span class="source-tag"
+                                        onclick="prefillQuestion('Quelles sont les limites autorisées pour les rejets d\'hydrocarbures en mer ?')">Limites
+                                        Hydrocarbures</span>
+                                    <span class="source-tag"
+                                        onclick="prefillQuestion('Existe-t-il des dispositions pour protéger les oiseaux marins ?')">Protection
+                                        Oiseaux Marins</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Indicateur d'écriture -->
+                        <div class="typing-indicator" id="chat-typing">
+                            <span class="typing-dot"></span>
+                            <span class="typing-dot"></span>
+                            <span class="typing-dot"></span>
+                        </div>
+
+                        <!-- Barre de saisie -->
+                        <div class="chat-input-bar">
+                            <input class="chat-input-field" type="text" id="chat-input"
+                                placeholder="Posez votre question juridique ici..."
+                                onkeydown="if(event.key === 'Enter') sendQuery()">
+                            <button class="chat-send-btn" onclick="sendQuery()">➔</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TIROIR DES SOURCES (DRAWER LATÉRAL) -->
+                <div class="rag-detail-drawer" id="sources-drawer">
+                    <div class="drawer-header">
+                        <span class="drawer-title">Sources & Clauses Légales</span>
+                        <button class="drawer-close" onclick="toggleSourcesDrawer(false)">×</button>
+                    </div>
+                    <div class="drawer-content" id="sources-drawer-content">
+                        <!-- Rempli dynamiquement -->
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- TAB 3: VEILLE RÉGLEMENTAIRE (AUTOMATIC MONITOR) -->
+            <section class="tab-panel" id="panel-monitor">
+                <div class="section-title-wrap">
+                    <div>
+                        <h1 class="section-h1">Veille Réglementaire</h1>
+                        <p class="section-desc">Automatisation du crawling Internet et de l'intégration continue au RAG.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="monitor-grid">
+                    <!-- Contrôles et statut de la veille -->
+                    <div class="monitor-card">
+                        <h2 class="chart-title" style="margin-bottom: 20px;">Lancement & Statut</h2>
+                        <p class="chart-subtitle" style="margin-bottom: 24px;">Lancez manuellement une analyse continue
+                            des ressources juridiques réglementaires en ligne et importez automatiquement les mises à
+                            jour critiques dans la base de connaissances.</p>
+
+                        <table class="status-table">
+                            <tr>
+                                <td>État de la veille</td>
+                                <td><span class="status-badge badge-idle" id="monitor-badge-status">Inactif</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dernière exécution</td>
+                                <td id="monitor-last-run">Jamais</td>
+                            </tr>
+                            <tr>
+                                <td>Alertes détectées</td>
+                                <td id="monitor-last-alerts">Aucune</td>
+                            </tr>
+                            <tr>
+                                <td>Importation RAG</td>
+                                <td>Activée</td>
+                            </tr>
+                        </table>
+
+                        <button class="action-button" id="btn-trigger-monitor" onclick="triggerMonitor()">
+                            <span>⚡</span> Déclencher un cycle de veille
+                        </button>
+                    </div>
+
+                    <!-- Liste des Rapports Générés -->
+                    <div class="monitor-card">
+                        <h2 class="chart-title" style="margin-bottom: 20px;">Historique des Rapports de Veille</h2>
+                        <p class="chart-subtitle" style="margin-bottom: 16px;">Consultez les rapports détaillés générés
+                            par les cycles d'exploration automatique.</p>
+
+                        <div class="reports-table-container">
+                            <table class="reports-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom du Rapport</th>
+                                        <th>Date de Génération</th>
+                                        <th>Taille (Ko)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reports-table-body">
+                                    <tr>
+                                        <td colspan="4"
+                                            style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                            Chargement des rapports...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: IMPORTATEUR DE DOCUMENTS JURIDIQUES (PDF) -->
+            <section class="tab-panel" id="panel-upload">
+                <div class="section-title-wrap">
+                    <div>
+                        <h1 class="section-h1">Importateur de Documents</h1>
+                        <p class="section-desc">Ingestion de nouveaux PDF juridiques avec LlamaParse et extraction Groq
+                            LLM.</p>
+                    </div>
+                </div>
+
+                <div class="monitor-grid">
+                    <!-- Formulaire d'upload -->
+                    <div class="monitor-card">
+                        <h2 class="chart-title" style="margin-bottom: 20px;">Options d'Ingestion</h2>
+
+                        <div class="form-group" style="margin-bottom: 18px;">
+                            <label class="form-label" for="upload-theme">Thème de la Loi</label>
+                            <select class="dropdown-select" id="upload-theme" onchange="toggleCustomThemeInput()">
+                                <option value="Baleine">🐳 Whale Protection (Baleine)</option>
+                                <option value="Oiseaux marins">🐦 Marine Birds (Oiseaux marins)</option>
+                                <option value="Rejet hydrocarbure">🛢️ Hydrocarbon Discharges (Rejet hydrocarbure)</option>
+                                <option value="Autre">💡 Autre Thème (Autre)</option>
+                            </select>
+                            <input class="form-input" type="text" id="upload-theme-custom"
+                                placeholder="Saisir le thème personnalisé..."
+                                style="margin-top: 10px; display: none;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label class="form-label" for="upload-country">Pays de Juridiction</label>
+                            <select class="dropdown-select" id="upload-country" onchange="toggleCustomCountryInput()">
+                                <option value="Bénin" selected>Bénin</option>
+                                <option value="Guinée">Guinée</option>
+                                <option value="Mauritanie">Mauritanie</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Sénégal">Sénégal</option>
+                                <option value="Cameroun">Cameroun</option>
+                                <option value="Congo">Congo</option>
+                                <option value="Madagascar">Madagascar</option>
+                                <option value="Gabon">Gabon</option>
+                                <option value="Comores">Comores</option>
+                                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                                <option value="Djibouti">Djibouti</option>
+                                <option value="Maroc">Maroc</option>
+                                <option value="Tunisie">Tunisie</option>
+                                <option value="Algérie">Algérie</option>
+                                <option value="Autre">💡 Autre Pays (Saisie libre)</option>
+                            </select>
+                            <input class="form-input" type="text" id="upload-country-custom"
+                                placeholder="Saisir le pays personnalisé..."
+                                style="margin-top: 10px; display: none;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label class="form-label">Fichiers PDF ou Word</label>
+                            <div id="drag-drop-zone"
+                                style="border: 2px dashed var(--border-color); border-radius: 16px; padding: 32px 20px; text-align: center; background: rgba(0,0,0,0.2); cursor: pointer; transition: var(--transition);">
+                                <span style="font-size: 36px; display: block; margin-bottom: 8px;">📥</span>
+                                <span id="drag-drop-text"
+                                    style="font-size: 13px; color: var(--text-muted); display: block;">Glissez-déposez
+                                    vos fichiers PDF ou Word (.docx, .doc) ici ou cliquez pour parcourir</span>
+                                <input type="file" id="file-input-el" accept=".pdf,.docx,.doc" style="display: none;"
+                                    multiple>
+                            </div>
+                        </div>
+
+                        <button class="action-button" id="btn-trigger-upload" onclick="startIngestion()" disabled>
+                            <span>📤</span> Lancer l'ingestion automatique
+                        </button>
+                    </div>
+
+                    <!-- Grille de Barres de Progression -->
+                    <div class="monitor-card" style="display: flex; flex-direction: column; min-height: 400px;">
+                        <h2 class="chart-title" style="margin-bottom: 20px;">File d'Attente & Progression</h2>
+                        <p class="chart-subtitle" style="margin-bottom: 16px;">Suivez en temps réel l'avancement de
+                            chaque loi par son indicateur de progression néon.</p>
+
+                        <div id="ingestion-progress-grid"
+                            style="flex: 1; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; max-height: 350px;">
+                            <div style="text-align: center; color: var(--text-muted); padding: 40px 20px;">
+                                <span style="font-size: 32px; display: block; margin-bottom: 8px;">⏳</span>
+                                File d'attente inactive. Sélectionnez vos fichiers PDF et lancez le traitement...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODAL D'AFFICHAGE DU RAPPORT HTML -->
+    <div class="report-overlay" id="report-modal-overlay">
+        <div class="report-modal">
+            <div class="report-modal-header">
+                <span class="report-modal-title" id="report-modal-title">Rapport de Veille Juridique</span>
+                <button class="report-modal-close" onclick="closeReportModal()">×</button>
+            </div>
+            <iframe class="report-iframe" id="report-modal-iframe" src="about:blank"></iframe>
+        </div>
+    </div>
+
+    <!-- LOGIQUE LOGICIELLE DE L'APPLICATION (JAVASCRIPT) -->
+    <script>
+        const API_URL = "http://127.0.0.1:5000";
+        let activeTab = "dash";
+        let activeAgent = "Recherche";
+        let sessionToken = null;
+        let loggedUser = null;
+
+        let themeChartInstance = null;
+        let countryChartInstance = null;
+        let activeSourcesList = [];
+        let monitorStatusInterval = null;
+        let selectedFile = null;
+        let ingestionInterval = null;
+        let cachedGeoJSON = null;
+
+        // Initialisation globale au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            // Génération dynamique des étoiles de la galaxie
+            const ambientBg = document.querySelector('.ambient-bg');
+            if (ambientBg) {
+                const starCount = 120;
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'galaxy-star';
+                    star.style.left = `${Math.random() * 100}vw`;
+                    star.style.top = `${Math.random() * 100}vh`;
+                    const size = Math.random() * 2 + 1; // 1px à 3px
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.opacity = Math.random() * 0.7 + 0.3;
+                    star.style.animationDelay = `${Math.random() * 5}s`;
+                    star.style.animationDuration = `${Math.random() * 4 + 2}s`;
+                    ambientBg.appendChild(star);
+                }
+            }
+
+            // Auto-connexion en tant qu'utilisateur (pas besoin de login pour User)
+            const savedRole = localStorage.getItem('legal_ai_role') || 'user';
+            const savedUser = localStorage.getItem('legal_ai_username') || 'Utilisateur';
+            sessionToken = 'auto-user-token';
+            loggedUser = { username: savedUser, role: savedRole };
+            setupWorkspaceUI();
+
+            // --- GESTION DU GLISSER-DÉPOSER ET FILE SELECTION ---
+            const dropZone = document.getElementById('drag-drop-zone');
+            const fileInput = document.getElementById('file-input-el');
+            const dragDropText = document.getElementById('drag-drop-text');
+            const btnUpload = document.getElementById('btn-trigger-upload');
+
+            if (dropZone && fileInput) {
+                dropZone.addEventListener('click', () => fileInput.click());
+
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        handleSelectedFiles(e.target.files);
+                    }
+                });
+
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropZone.style.borderColor = 'var(--secondary)';
+                    dropZone.style.background = 'rgba(0, 242, 254, 0.05)';
+                });
+
+                ['dragleave', 'dragend'].forEach(type => {
+                    dropZone.addEventListener(type, () => {
+                        dropZone.style.borderColor = 'var(--border-color)';
+                        dropZone.style.background = 'rgba(0,0,0,0.2)';
+                    });
+                });
+
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropZone.style.borderColor = 'var(--border-color)';
+                    dropZone.style.background = 'rgba(0,0,0,0.2)';
+
+                    if (e.dataTransfer.files.length > 0) {
+                        const files = Array.from(e.dataTransfer.files).filter(f => {
+                            const name = f.name.toLowerCase();
+                            return name.endsWith('.pdf') || name.endsWith('.docx') || name.endsWith('.doc');
+                        });
+                        if (files.length > 0) {
+                            handleSelectedFiles(files);
+                        } else {
+                            alert("Seuls les fichiers PDF ou Word (.docx, .doc) sont acceptés.");
+                        }
+                    }
+                });
+            }
+
+            function handleSelectedFiles(files) {
+                selectedFiles = Array.from(files);
+                if (selectedFiles.length > 0) {
+                    if (selectedFiles.length === 1) {
+                        dragDropText.innerHTML = `<strong style="color:var(--secondary)">${selectedFiles[0].name}</strong> (${(selectedFiles[0].size / 1024 / 1024).toFixed(2)} Mo) sélectionné.`;
+                    } else {
+                        dragDropText.innerHTML = `<strong style="color:var(--secondary)">${selectedFiles.length} fichiers</strong> sélectionnés (${(selectedFiles.reduce((acc, f) => acc + f.size, 0) / 1024 / 1024).toFixed(2)} Mo au total).`;
+                    }
+                    btnUpload.disabled = false;
+                }
+            }
+        });
+
+        // Remplir automatiquement les informations de connexion pour test
+        function fillCredentials(role) {
+            document.getElementById('username').value = role;
+            document.getElementById('password').value = role;
+        }
+
+        // Pré-remplir une question de test dans le chatbot
+        function prefillQuestion(text) {
+            document.getElementById('chat-input').value = text;
+            document.getElementById('chat-input').focus();
+        }
+
+        // Afficher ou masquer le champ de saisie de thème personnalisé
+        function toggleCustomThemeInput() {
+            const themeSelect = document.getElementById('upload-theme');
+            const customInput = document.getElementById('upload-theme-custom');
+            if (themeSelect.value === 'Autre') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        // Afficher ou masquer le champ de saisie de pays personnalisé
+        function toggleCustomCountryInput() {
+            const countrySelect = document.getElementById('upload-country');
+            const customInput = document.getElementById('upload-country-custom');
+            if (countrySelect.value === 'Autre') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        // GESTION DE LA CONNEXION (LOGIN)
+        async function handleLogin() {
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('login-error');
+            const loginBtn = document.getElementById('login-submit-btn');
+
+            if (!usernameInput || !passwordInput) {
+                errorDiv.innerText = "Nom d'utilisateur et mot de passe requis.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            errorDiv.style.display = 'none';
+            loginBtn.innerText = "Authentification en cours...";
+            loginBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_URL}/api/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: usernameInput, password: passwordInput })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    // Enregistrer la session
+                    sessionToken = data.token;
+                    loggedUser = { username: data.username, role: data.role };
+
+                    localStorage.setItem('legal_ai_token', data.token);
+                    localStorage.setItem('legal_ai_username', data.username);
+                    localStorage.setItem('legal_ai_role', data.role);
+
+                    setupWorkspaceUI();
+                } else {
+                    errorDiv.innerText = data.message || "Erreur d'authentification.";
+                    errorDiv.style.display = 'block';
+                }
+            } catch (err) {
+                errorDiv.innerText = "Impossible de se connecter au serveur backend Flask. Assurez-vous qu'il est en cours d'exécution.";
+                errorDiv.style.display = 'block';
+                console.error(err);
+            } finally {
+                loginBtn.innerText = "S'authentifier";
+                loginBtn.disabled = false;
+            }
+        }
+
+        // GESTION DU MODAL ADMIN
+        function toggleAdminLogin() {
+            const modal = document.getElementById('admin-modal');
+            if (loggedUser && loggedUser.role === 'admin') {
+                // Si déjà admin, repasser en user
+                switchToUser();
+            } else {
+                modal.style.display = 'flex';
+                document.getElementById('admin-user-input').focus();
+            }
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').style.display = 'none';
+            document.getElementById('admin-login-error').style.display = 'none';
+            document.getElementById('admin-user-input').value = '';
+            document.getElementById('admin-pass-input').value = '';
+        }
+
+        async function submitAdminLogin() {
+            const user = document.getElementById('admin-user-input').value.trim();
+            const pass = document.getElementById('admin-pass-input').value.trim();
+            const errDiv = document.getElementById('admin-login-error');
+
+            if (!user || !pass) {
+                errDiv.innerText = "Identifiants requis.";
+                errDiv.style.display = 'block';
+                return;
+            }
+
+            try {
+                const resp = await fetch(`${API_URL}/api/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+                const data = await resp.json();
+                if (resp.ok && data.status === 'success' && data.role === 'admin') {
+                    loggedUser = { username: data.username, role: 'admin' };
+                    sessionToken = data.token;
+                    localStorage.setItem('legal_ai_role', 'admin');
+                    localStorage.setItem('legal_ai_username', data.username);
+                    localStorage.setItem('legal_ai_token', data.token);
+                    // Mise à jour UI
+                    document.getElementById('user-display-name').innerText = data.username;
+                    const badge = document.getElementById('role-badge-el');
+                    badge.innerText = 'admin';
+                    badge.style.background = '#d97706';
+                    document.getElementById('admin-toggle-btn').innerHTML = '👤 User';
+                    document.getElementById('admin-toggle-btn').title = 'Revenir en User';
+                    closeAdminModal();
+                    // Montrer onglets admin si nécessaire
+                    showAdminTabs();
+                } else {
+                    errDiv.innerText = data.message || "Accès refusé. Vérifiez vos identifiants admin.";
+                    errDiv.style.display = 'block';
+                }
+            } catch (e) {
+                // Fallback local si serveur non dispo
+                if (user === 'admin' && pass === 'admin') {
+                    loggedUser = { username: 'admin', role: 'admin' };
+                    localStorage.setItem('legal_ai_role', 'admin');
+                    localStorage.setItem('legal_ai_username', 'admin');
+                    document.getElementById('user-display-name').innerText = 'Admin';
+                    const badge = document.getElementById('role-badge-el');
+                    badge.innerText = 'admin';
+                    badge.style.background = '#d97706';
+                    document.getElementById('admin-toggle-btn').innerHTML = '👤 User';
+                    closeAdminModal();
+                    showAdminTabs();
+                } else {
+                    errDiv.innerText = "Impossible de joindre le serveur. (admin/admin pour test local)";
+                    errDiv.style.display = 'block';
+                }
+            }
+        }
+
+        function switchToUser() {
+            loggedUser = { username: 'Utilisateur', role: 'user' };
+            localStorage.setItem('legal_ai_role', 'user');
+            localStorage.setItem('legal_ai_username', 'Utilisateur');
+            localStorage.removeItem('legal_ai_token');
+            document.getElementById('user-display-name').innerText = 'Utilisateur';
+            const badge = document.getElementById('role-badge-el');
+            badge.innerText = 'user';
+            badge.style.background = '#7c5cdc';
+            document.getElementById('admin-toggle-btn').innerHTML = '🔑 Admin';
+            document.getElementById('admin-toggle-btn').title = 'Connexion Admin';
+            hideAdminTabs();
+            if (activeTab === 'monitor' || activeTab === 'upload') {
+                switchTab('dash');
+            }
+        }
+
+        function showAdminTabs() {
+            // Révéler les onglets admin supplémentaires si cachés
+            const monitorNav = document.getElementById('nav-monitor');
+            const uploadNav = document.getElementById('nav-upload');
+            if (monitorNav) monitorNav.style.display = 'flex';
+            if (uploadNav) uploadNav.style.display = 'flex';
+        }
+
+        function hideAdminTabs() {
+            // Cacher les onglets admin supplémentaires
+            const monitorNav = document.getElementById('nav-monitor');
+            const uploadNav = document.getElementById('nav-upload');
+            if (monitorNav) monitorNav.style.display = 'none';
+            if (uploadNav) uploadNav.style.display = 'none';
+        }
+
+        // DÉCONNEXION (LOGOUT)
+        function handleLogout() {
+
+            sessionToken = null;
+            loggedUser = null;
+            localStorage.clear();
+
+            // Effacer l'intervalle de monitoring si actif
+            if (monitorStatusInterval) {
+                clearInterval(monitorStatusInterval);
+            }
+
+            // Afficher l'écran de login
+            document.getElementById('login-gate').style.display = 'flex';
+            document.getElementById('main-workspace').style.display = 'none';
+
+            // Détruire les graphiques
+            if (themeChartInstance) themeChartInstance.destroy();
+            if (countryChartInstance) countryChartInstance.destroy();
+        }
+
+        // MISE EN PLACE DE L'INTERFACE PRINCIPALE APRÈS AUTHENTIFICATION
+        function setupWorkspaceUI() {
+            document.getElementById('login-gate').style.display = 'none';
+            document.getElementById('main-workspace').style.display = 'flex';
+
+            // Afficher le profil
+            document.getElementById('user-display-name').innerText = loggedUser.username;
+            const roleBadge = document.getElementById('role-badge-el');
+            roleBadge.innerText = loggedUser.role;
+            if (loggedUser.role === 'admin') {
+                roleBadge.style.background = '#d97706'; // Gold/Amber pour admin
+                document.getElementById('admin-toggle-btn').innerHTML = '👤 User';
+                document.getElementById('admin-toggle-btn').title = 'Revenir en User';
+                showAdminTabs();
+            } else {
+                roleBadge.style.background = '#7c5cdc'; // Purple pour avocat
+                document.getElementById('admin-toggle-btn').innerHTML = '🔑 Admin';
+                document.getElementById('admin-toggle-btn').title = 'Connexion Admin';
+                hideAdminTabs();
+            }
+
+            // Charger les statistiques du dashboard
+            loadDashboardStats();
+
+            // Charger les rapports de veille
+            loadMonitoringReports();
+
+            // Interroger le statut de la veille
+            checkMonitoringStatus();
+
+            // Activer le polling sur le statut de la veille (toutes les 5s)
+            monitorStatusInterval = setInterval(checkMonitoringStatus, 5000);
+        }
+
+        // NAVIGATION ENTRE LES ONGLETS (TABS)
+        function switchTab(tabId) {
+            if (tabId === activeTab) return;
+
+            // Modifier l'état visuel des menus de la barre latérale
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.getElementById(`nav-${tabId}`).classList.add('active');
+
+            // Modifier l'état visuel des sections
+            document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
+            document.getElementById(`panel-${tabId}`).classList.add('active');
+
+            activeTab = tabId;
+
+            // Actions spécifiques
+            if (tabId === 'dash') {
+                loadDashboardStats();
+            } else if (tabId === 'monitor') {
+                loadMonitoringReports();
+            }
+        }
+
+        let mapInstance = null;
+        let mapMarkers = [];
+
+        function buildGeographicMap(mapData) {
+            const mapContainer = document.getElementById('geoMap');
+            if (!mapContainer || typeof L === 'undefined') return;
+
+            // Wait a micro-moment for DOM positioning
+            setTimeout(async () => {
+                if (!mapInstance) {
+                    mapInstance = L.map('geoMap', {
+                        center: [5.0, 15.0],
+                        zoom: 3,
+                        zoomControl: true,
+                        attributionControl: false
+                    });
+
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                        maxZoom: 19
+                    }).addTo(mapInstance);
+                } else {
+                    mapInstance.invalidateSize();
+                }
+
+                // Clear old markers/layers
+                mapMarkers.forEach(m => mapInstance.removeLayer(m));
+                mapMarkers = [];
+
+                // Fetch or load GeoJSON of world boundaries (via CORS-enabled jsDelivr CDN)
+                let geoData = cachedGeoJSON;
+                if (!geoData) {
+                    try {
+                        const response = await fetch("https://cdn.jsdelivr.net/gh/datasets/geo-countries@main/data/countries.geojson");
+                        geoData = await response.json();
+                        cachedGeoJSON = geoData;
+                    } catch (err) {
+                        console.error("Failed to load map GeoJSON:", err);
+                        return;
+                    }
+                }
+
+                // Dictionary for quick map lookup
+                const mapDataDict = {};
+                mapData.forEach(item => {
+                    mapDataDict[item.name] = item.count;
+                });
+
+                // Mapping normalized names to backend names
+                const countryNameMapping = {
+                    "guinea": "Guinée",
+                    "guinee": "Guinée",
+                    "mauritania": "Mauritanie",
+                    "mauritanie": "Mauritanie",
+                    "benin": "Bénin",
+                    "togo": "Togo",
+                    "congo": "Congo",
+                    "democratic republic of the congo": "RDC",
+                    "republic of the congo": "Congo",
+                    "madagascar": "Madagascar",
+                    "senegal": "Sénégal",
+                    "gabon": "Gabon",
+                    "comoros": "Comores",
+                    "cameroon": "Cameroun",
+                    "cameroun": "Cameroun",
+                    "ivory coast": "Côte d'Ivoire",
+                    "cote d ivoire": "Côte d'Ivoire",
+                    "djibouti": "Djibouti",
+                    "morocco": "Maroc",
+                    "maroc": "Maroc",
+                    "tunisia": "Tunisie",
+                    "tunisie": "Tunisie",
+                    "algeria": "Algérie",
+                    "algerie": "Algérie",
+                    "france": "France",
+                    "marpol": "MARPOL"
+                };
+
+                // List of African countries to highlight
+                const africanCountries = new Set([
+                    "algeria", "angola", "benin", "botswana", "burkina faso", "burundi", "cameroon", "cape verde",
+                    "central african republic", "chad", "comoros", "congo", "democratic republic of the congo",
+                    "djibouti", "egypt", "equatorial guinea", "eritrea", "ethiopia", "gabon", "gambia", "ghana",
+                    "guinea", "guinea bissau", "ivory coast", "kenya", "lesotho", "liberia", "libya", "madagascar",
+                    "malawi", "mali", "mauritania", "mauritius", "morocco", "mozambique", "namibia", "niger",
+                    "nigeria", "rwanda", "sao tome and principe", "senegal", "seychelles", "sierra leone",
+                    "somalia", "south africa", "south sudan", "sudan", "swaziland", "tanzania", "togo", "tunisia",
+                    "uganda", "western sahara", "zambia", "zimbabwe"
+                ]);
+
+                function getFeatureCountryName(feature) {
+                    if (!feature || !feature.properties) return "";
+                    return feature.properties.name || feature.properties.ADMIN || feature.properties.Name || "";
+                }
+
+                function getNormalizedName(name) {
+                    if (!name) return "";
+                    return name.toLowerCase()
+                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                        .replace(/[^a-z0-9]/g, " ")
+                        .trim();
+                }
+
+                function getColor(count, isAfrica) {
+                    if (count > 0) {
+                        if (count < 200) return '#162e4c'; // Faible (Dark Blue)
+                        if (count < 1000) return '#1e4c75';
+                        if (count < 2000) return '#4f728c';
+                        if (count < 3000) return '#8c9c6f';
+                        if (count < 4000) return '#bfa53f';
+                        return '#d49b2c'; // Forte (Gold)
+                    }
+                    if (isAfrica) {
+                        return '#0f1f35'; // Dark slate blue for inactive African countries
+                    }
+                    return 'rgba(255, 255, 255, 0.015)'; // Non-African countries
+                }
+
+                function styleFeature(feature) {
+                    const geoName = getFeatureCountryName(feature);
+                    const normName = getNormalizedName(geoName);
+
+                    let count = 0;
+                    const mappedName = countryNameMapping[normName];
+                    if (mappedName && mapDataDict[mappedName]) {
+                        count = mapDataDict[mappedName];
+                    }
+
+                    const isAfrica = africanCountries.has(normName);
+
+                    return {
+                        fillColor: getColor(count, isAfrica),
+                        weight: 1,
+                        opacity: 0.35,
+                        color: 'rgba(255, 255, 255, 0.15)', // country border
+                        fillOpacity: 0.8
+                    };
+                }
+
+                let geojsonLayer;
+
+                function onEachFeature(feature, layer) {
+                    const geoName = getFeatureCountryName(feature);
+                    const normName = getNormalizedName(geoName);
+                    const mappedName = countryNameMapping[normName];
+
+                    let count = 0;
+                    let displayName = mappedName || geoName;
+                    if (mappedName && mapDataDict[mappedName]) {
+                        count = mapDataDict[mappedName];
+                    }
+
+                    const isAfrica = africanCountries.has(normName);
+
+                    if (isAfrica || count > 0) {
+                        let intensity = "Faible";
+                        if (count >= 1500) intensity = "Forte";
+                        else if (count >= 500) intensity = "Moyenne";
+
+                        layer.bindPopup(`
+                            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; line-height: 1.4; color: var(--text-main);">
+                                <strong style="font-size: 14px; display: block; margin-bottom: 4px;">📍 ${displayName} <span style="color: var(--secondary); margin-left: 4px;">| ${count}</span></strong>
+                                <span style="color: var(--text-muted); font-size: 11px;">Intensité: <strong style="color: ${count >= 1500 ? '#d49b2c' : '#5dade2'};">${intensity}</strong></span>
+                            </div>
+                        `);
+
+                        layer.on({
+                            mouseover: function (e) {
+                                const l = e.target;
+                                l.setStyle({
+                                    weight: 1.5,
+                                    color: '#7c5cdc', // Violet border on hover
+                                    fillOpacity: 0.9
+                                });
+                                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                                    l.bringToFront();
+                                }
+                            },
+                            mouseout: function (e) {
+                                if (geojsonLayer) {
+                                    geojsonLayer.resetStyle(e.target);
+                                }
+                            }
+                        });
+                    }
+                }
+
+                geojsonLayer = L.geoJSON(geoData, {
+                    style: styleFeature,
+                    onEachFeature: onEachFeature
+                }).addTo(mapInstance);
+
+                mapMarkers.push(geojsonLayer);
+            }, 100);
+        }
+
+        // CHARGEMENT DES STATS DU DASHBOARD & DES GRAPHIQUES (APIS)
+        async function loadDashboardStats() {
+            try {
+                const response = await fetch(`${API_URL}/api/stats`);
+                const data = await response.json();
+
+                // Mettre à jour les KPI cards
+                document.getElementById('stat-total-clauses').innerText = data.system.total_clauses.toLocaleString();
+                document.getElementById('stat-countries').innerText = data.system.active_countries;
+                document.getElementById('stat-themes').innerText = data.system.active_themes;
+                document.getElementById('stat-total-documents').innerText = data.system.total_documents;
+
+                // Statut RAG
+                const ragStatusText = document.getElementById('rag-status-text');
+                ragStatusText.innerText = "Pipeline RAG connecté (" + data.system.embeddings_model.split('/')[1] + ")";
+
+                // Mettre à jour les indicateurs de qualité
+                if (data.system.quality) {
+                    document.getElementById('quality-authorities').innerText = data.system.quality.authorities_extracted.toLocaleString();
+                    document.getElementById('quality-penalties').innerText = data.system.quality.penalties_extracted.toLocaleString();
+                    document.getElementById('quality-references').innerText = data.system.quality.cross_references_validated.toLocaleString();
+                    document.getElementById('quality-length').innerText = data.system.quality.avg_clause_length + " caract.";
+                    document.getElementById('quality-temporal').innerText = data.system.quality.temporal_range || '2016 - 2026';
+                    document.getElementById('quality-accuracy').innerText = data.system.quality.accuracy_score;
+                }
+
+                // Mettre à jour les métriques d'automatisation (1, 2, 3)
+                if (data.system.automation_metrics) {
+                    const am = data.system.automation_metrics;
+
+                    // 1. Consommation & Coûts
+                    document.getElementById('auto-tokens').innerText = `${am.total_prompt_tokens.toLocaleString()} / ${am.total_completion_tokens.toLocaleString()}`;
+                    document.getElementById('auto-cost').innerText = `$${am.total_estimated_cost_usd.toFixed(4)}`;
+
+                    // 2. Qualité & Nettoyage
+                    document.getElementById('auto-chars').innerText = `${am.total_original_char_count.toLocaleString()} / ${am.total_clean_char_count.toLocaleString()}`;
+                    document.getElementById('auto-chars-removed').innerText = am.total_characters_removed.toLocaleString();
+                    document.getElementById('auto-clauses').innerText = `${am.total_clauses_before_merge.toLocaleString()} / ${am.total_clauses_after_merge.toLocaleString()}`;
+                    document.getElementById('auto-clauses-merged').innerText = am.total_clauses_merged_count.toLocaleString();
+                    document.getElementById('auto-compression').innerText = `${am.compression_ratio_pct.toFixed(1)}%`;
+
+                    // 3. Stabilité & Durées
+                    document.getElementById('auto-time').innerText = `${am.total_processing_time_sec.toFixed(1)}s`;
+                    document.getElementById('auto-avg-llama').innerText = `${am.avg_llamaparse_time_sec.toFixed(1)}s`;
+                    document.getElementById('auto-avg-groq').innerText = `${am.avg_groq_time_sec.toFixed(1)}s`;
+                    document.getElementById('auto-avg-post').innerText = `${am.avg_postprocess_time_sec.toFixed(1)}s`;
+                    document.getElementById('auto-avg-total').innerText = `${am.avg_total_time_sec.toFixed(1)}s`;
+                }
+
+                // Construire les graphiques
+                buildThemeChart(data.themes);
+                buildCountryChart(data.countries);
+
+                // Mettre à jour le sélecteur de pays du RAG
+                const countrySelect = document.getElementById('rag-filter-country');
+                if (countrySelect && data.countries) {
+                    const currentValue = countrySelect.value;
+                    countrySelect.innerHTML = '<option value="Tous">Tous les pays (Aiguillage Auto)</option>';
+                    Object.keys(data.countries).sort().forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country;
+                        option.textContent = country;
+                        countrySelect.appendChild(option);
+                    });
+                    // Rétablir la valeur sélectionnée si elle existe toujours dans la liste
+                    if ([...countrySelect.options].some(opt => opt.value === currentValue)) {
+                        countrySelect.value = currentValue;
+                    }
+                }
+
+                // Construire la carte géographique
+                if (data.map) {
+                    buildGeographicMap(data.map);
+                }
+
+                // Charger également la liste des conflits
+                loadConflictsList();
+
+            } catch (err) {
+                console.error("Erreur de chargement des statistiques :", err);
+            }
+        }
+
+        async function loadConflictsList() {
+            const card = document.getElementById('dashboard-conflicts-card');
+            const tbody = document.getElementById('dashboard-conflicts-tbody');
+            if (!tbody || !card) return;
+
+            try {
+                const response = await fetch(`${API_URL}/api/conflicts`);
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success' && data.conflicts && data.conflicts.length > 0) {
+                    let html = "";
+                    data.conflicts.forEach(cf => {
+                        html += `
+                            <tr>
+                                <td style="font-weight: 700; color: #f87171;">🔴 ${cf.new_law || 'Loi Récente'}</td>
+                                <td style="font-weight: 600; color: #a78bfa;">🔵 ${cf.old_law || 'Loi Existante'}</td>
+                                <td style="color: var(--text-muted); font-style: italic; line-height: 1.4;">${cf.explanation || 'Contradiction non spécifiée.'}</td>
+                            </tr>
+                        `;
+                    });
+                    tbody.innerHTML = html;
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                    tbody.innerHTML = "";
+                }
+            } catch (err) {
+                console.error("Erreur de récupération des conflits :", err);
+                card.style.display = 'none';
+            }
+        }
+
+        // RENDU GRAPHIQUE 1 : REPARTITION THEME JURIDIQUE (Chart.js)
+        function buildThemeChart(themesData) {
+            const ctx = document.getElementById('themeChart').getContext('2d');
+            if (themeChartInstance) themeChartInstance.destroy();
+
+            const labels = Object.keys(themesData);
+            const values = Object.values(themesData);
+
+            themeChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: [
+                            'rgba(124, 92, 220, 0.7)', // Purple
+                            'rgba(0, 242, 254, 0.7)',  // Cyan
+                            'rgba(245, 158, 11, 0.7)',  // Gold
+                            'rgba(16, 185, 129, 0.7)',  // Green
+                            'rgba(236, 72, 153, 0.7)',  // Pink
+                            'rgba(99, 102, 241, 0.7)',  // Indigo
+                            'rgba(239, 68, 68, 0.7)'    // Red
+                        ],
+                        borderColor: [
+                            '#7c5cdc',
+                            '#00f2fe',
+                            '#f59e0b',
+                            '#10b981',
+                            '#ec4899',
+                            '#6366f1',
+                            '#ef4444'
+                        ],
+                        borderWidth: 1.5,
+                        hoverOffset: 12
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#9ca3af',
+                                font: { family: 'Plus Jakarta Sans', size: 11, weight: 500 },
+                                padding: 16
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        // RENDU GRAPHIQUE 2 : DISTRIBUTION PAYS AFRIQUE (Chart.js)
+        function buildCountryChart(countriesData) {
+            const ctx = document.getElementById('countryChart').getContext('2d');
+            if (countryChartInstance) countryChartInstance.destroy();
+
+            // Trier les pays par volume
+            const sortedCountries = Object.entries(countriesData)
+                .sort((a, b) => b[1] - a[1]);
+
+            const labels = sortedCountries.map(x => x[0]);
+            const values = sortedCountries.map(x => x[1]);
+
+            // Générer un dégradé de couleur
+            const gradient = ctx.createLinearGradient(0, 0, 400, 0);
+            gradient.addColorStop(0, 'rgba(124, 92, 220, 0.2)');
+            gradient.addColorStop(1, 'rgba(124, 92, 220, 0.8)');
+
+            countryChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nombre de Clauses',
+                        data: values,
+                        backgroundColor: gradient,
+                        borderColor: '#9670f5',
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#9ca3af', font: { family: 'Plus Jakarta Sans', size: 10 } }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: '#f3f4f6', font: { family: 'Plus Jakarta Sans', size: 11, weight: 600 } }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // SELECTION PERSONA AGENT DANS CHATBOT
+        function selectAgent(agentName) {
+            document.querySelectorAll('.agent-card').forEach(el => el.classList.remove('active'));
+            document.getElementById(`agent-card-${agentName}`).classList.add('active');
+
+            activeAgent = agentName;
+
+            // Modifier le titre dans la fenêtre de chat
+            const agentFullTitles = {
+                "Recherche": "Search Agent (Extraction hybride)",
+                "Analyse": "Definition Agent (Analyse terminologique)",
+                "Synthèse": "Router Agent (Navigation récursive)",
+                "Cohérence": "Supervisor Agent (Vérification de cohérence)"
+            };
+            document.getElementById('chat-current-agent-title').innerText = agentFullTitles[agentName];
+        }
+
+        // ENVOI D'UNE REQUÊTE AU CHATBOT RAG
+        async function sendQuery() {
+            const inputField = document.getElementById('chat-input');
+            const queryText = inputField.value.trim();
+            if (!queryText) return;
+
+            // Effacer la saisie
+            inputField.value = "";
+
+            const chatLog = document.getElementById('chat-log');
+            const typingIndicator = document.getElementById('chat-typing');
+
+            // Reset and activate vertical stepper immediately
+            document.querySelectorAll('.vertical-step').forEach(el => {
+                el.className = 'vertical-step';
+            });
+            document.querySelectorAll('.vertical-connector').forEach(el => {
+                el.className = 'vertical-connector';
+            });
+
+            document.getElementById('vstep-evaluation').className = 'vertical-step active';
+            document.getElementById('vstep-status-evaluation').innerText = 'Évaluation initiale de l\'état du dossier...';
+            document.getElementById('vstep-status-definition').innerText = 'En attente...';
+            document.getElementById('vstep-status-detection').innerText = 'En attente...';
+            document.getElementById('vstep-status-resolution').innerText = 'En attente...';
+            document.getElementById('vstep-status-completeness').innerText = 'En attente...';
+            document.getElementById('vstep-status-answering').innerText = 'En attente...';
+
+            // 1. Ajouter le message de l'utilisateur dans l'historique
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-bubble bubble-user';
+            userBubble.innerText = queryText;
+            chatLog.appendChild(userBubble);
+            chatLog.scrollTop = chatLog.scrollHeight;
+
+            // 2. Afficher l'indicateur d'écriture
+            typingIndicator.style.display = 'flex';
+            chatLog.scrollTop = chatLog.scrollHeight;
+
+            // Récupérer les filtres
+            const countryFilter = document.getElementById('rag-filter-country').value;
+
+            try {
+                // Appel API
+                const response = await fetch(`${API_URL}/api/query`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: queryText,
+                        country: countryFilter,
+                        agent: activeAgent
+                    })
+                });
+
+                const data = await response.json();
+
+                // Mettre à jour automatiquement le dropdown filtre pays si le RAG a routé vers un pays spécifique
+                if (data.resolved_country) {
+                    const countrySelect = document.getElementById('rag-filter-country');
+                    if (countrySelect && countrySelect.value !== data.resolved_country) {
+                        for (let i = 0; i < countrySelect.options.length; i++) {
+                            if (countrySelect.options[i].value.toLowerCase() === data.resolved_country.toLowerCase()) {
+                                countrySelect.value = countrySelect.options[i].value;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // 3. Masquer l'indicateur d'écriture
+                typingIndicator.style.display = 'none';
+
+                // Rendu visuel du stepper vertical multi-agents avec animations séquentielles
+                if (data.pipeline_steps && data.pipeline_steps.length >= 6) {
+                    const steps = data.pipeline_steps;
+
+                    // Étape 1: Supervisor Agent (Évaluation) terminé
+                    setTimeout(() => {
+                        document.getElementById('vstep-evaluation').className = 'vertical-step completed';
+                        document.getElementById('vstep-status-evaluation').innerText = steps[0].status;
+                        document.getElementById('vconn-evaluation').className = 'vertical-connector completed';
+
+                        document.getElementById('vstep-definition').className = 'vertical-step active';
+                        document.getElementById('vstep-status-definition').innerText = 'Injection des définitions juridiques manquantes...';
+                    }, 100);
+
+                    // Étape 2: Definition Agent terminé
+                    setTimeout(() => {
+                        document.getElementById('vstep-definition').className = 'vertical-step completed';
+                        document.getElementById('vstep-status-definition').innerText = steps[1].status;
+                        document.getElementById('vconn-definition').className = 'vertical-connector completed';
+
+                        document.getElementById('vstep-detection').className = 'vertical-step active';
+                        document.getElementById('vstep-status-detection').innerText = 'Détection des renvois croisés explicites...';
+                    }, 350);
+
+                    // Étape 3: Reference Detector Agent terminé
+                    setTimeout(() => {
+                        document.getElementById('vstep-detection').className = 'vertical-step completed';
+                        document.getElementById('vstep-status-detection').innerText = steps[2].status;
+                        document.getElementById('vconn-detection').className = 'vertical-connector completed';
+
+                        document.getElementById('vstep-resolution').className = 'vertical-step active';
+                        document.getElementById('vstep-status-resolution').innerText = 'Résolution des cibles et promotion des nœuds...';
+                    }, 600);
+
+                    // Étape 4: Cross-Reference Resolution Agent terminé
+                    setTimeout(() => {
+                        document.getElementById('vstep-resolution').className = 'vertical-step completed';
+                        document.getElementById('vstep-status-resolution').innerText = steps[3].status;
+                        document.getElementById('vconn-resolution').className = 'vertical-connector completed';
+
+                        document.getElementById('vstep-completeness').className = 'vertical-step active';
+                        document.getElementById('vstep-status-completeness').innerText = 'Réévaluation de la complétude du dossier...';
+                    }, 850);
+
+                    // Étape 5: Supervisor Agent (Complétude) terminé
+                    setTimeout(() => {
+                        document.getElementById('vstep-completeness').className = 'vertical-step completed';
+                        document.getElementById('vstep-status-completeness').innerText = steps[4].status;
+                        document.getElementById('vconn-completeness').className = 'vertical-connector completed';
+
+                        document.getElementById('vstep-answering').className = 'vertical-step active';
+                        document.getElementById('vstep-status-answering').innerText = 'Génération de la réponse finale sourcée...';
+                    }, 1100);
+
+                    // Étape 6: Answering Agent terminé
+                    setTimeout(() => {
+                        document.getElementById('vstep-answering').className = 'vertical-step completed';
+                        document.getElementById('vstep-status-answering').innerText = steps[5].status;
+                    }, 1350);
+                }
+
+                // 4. Ajouter la bulle de réponse du bot
+                const botBubble = document.createElement('div');
+                botBubble.className = 'chat-bubble bubble-bot';
+
+                let rawAnswer = data.answer || "";
+                let reflexionContent = "";
+
+                // Extraire le bloc de réflexion s'il existe
+                const reflexionRegex = /<refle[cx]ion>([\s\S]*?)<\/refle[cx]ion>/i;
+                const match = rawAnswer.match(reflexionRegex);
+
+                if (match) {
+                    reflexionContent = match[1].trim();
+                    rawAnswer = rawAnswer.replace(reflexionRegex, "").trim();
+                } else {
+                    // Fallback pour les balises non fermées ou mal formées
+                    const startIdx = rawAnswer.toLowerCase().indexOf("<refle");
+                    const endIdx = rawAnswer.toLowerCase().indexOf("</refle");
+                    if (startIdx !== -1) {
+                        if (endIdx !== -1) {
+                            reflexionContent = rawAnswer.substring(startIdx, endIdx).replace(/<refle[cx]ion>/i, "").trim();
+                            rawAnswer = (rawAnswer.substring(0, startIdx) + rawAnswer.substring(endIdx)).replace(/<\/refle[cx]ion>/i, "").trim();
+                        } else {
+                            // S'il n'y a pas de balise de fermeture, on split au niveau de "Verdict :"
+                            const parts = rawAnswer.split(/Verdict\s*:/i);
+                            if (parts.length > 1) {
+                                reflexionContent = parts[0].replace(/<refle[cx]ion>/i, "").trim();
+                                rawAnswer = "Verdict :" + parts.slice(1).join("Verdict :");
+                            }
+                        }
+                    }
+                }
+
+                // Formater le raisonnement en HTML s'il existe
+                let reflexionHTML = "";
+                if (reflexionContent) {
+                    const formattedReflexion = reflexionContent.split('\n').map(line => {
+                        let text = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                        return text;
+                    }).join('<br>');
+
+                    reflexionHTML = `
+                        <div class="bubble-reasoning-direct" style="margin-bottom: 16px; padding: 14px; border-left: 3px solid var(--primary); background: rgba(124, 92, 220, 0.05); border-radius: 8px; font-size: 13.5px; color: var(--text-main); line-height: 1.6;">
+                            ${formattedReflexion}
+                        </div>
+                    `;
+                }
+
+                // Convertir les retours à la ligne simples en paragraphes pour un affichage propre
+                const formattedAnswer = rawAnswer.split('\n\n').map(p => {
+                    // Remplacer le gras Markdown par du HTML
+                    let text = p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                    text = text.replace(/\n/g, '<br>');
+                    return `<p>${text}</p>`;
+                }).join('');
+
+                botBubble.innerHTML = reflexionHTML + formattedAnswer;
+
+                // 5. Gérer et lier les sources trouvées
+                if (data.sources && data.sources.length > 0) {
+                    activeSourcesList = data.sources; // Sauvegarder dans l'état global
+
+                    const sourcesSummary = document.createElement('div');
+                    sourcesSummary.className = 'bubble-sources-summary';
+                    sourcesSummary.innerHTML = `<span class="bubble-sources-heading">📚 Clauses et articles référencés :</span>`;
+
+                    const tagRow = document.createElement('div');
+                    tagRow.className = 'source-tag-row';
+
+                    data.sources.forEach((src, idx) => {
+                        const tag = document.createElement('span');
+                        tag.className = 'source-tag';
+                        tag.innerText = `[${idx + 1}] ${src.title} (${src.country})`;
+                        tag.onclick = () => {
+                            // Ouvrir le tiroir latéral et faire défiler jusqu'à la source
+                            toggleSourcesDrawer(true);
+                            const card = document.getElementById(`source-card-${src.id}`);
+                            if (card) card.scrollIntoView({ behavior: 'smooth' });
+                        };
+                        tagRow.appendChild(tag);
+                    });
+
+                    sourcesSummary.appendChild(tagRow);
+                    botBubble.appendChild(sourcesSummary);
+
+                    // Activer le bouton de sources
+                    document.getElementById('open-sources-drawer-btn').style.display = 'block';
+                    document.getElementById('sources-count-badge').innerText = data.sources.length;
+
+                    // Mettre à jour le contenu du tiroir latéral des sources
+                    renderSourcesDrawerContent(data.sources);
+                }
+
+                // 6. Gérer les définitions trouvées
+                if (data.definitions && Object.keys(data.definitions).length > 0) {
+                    const definitionsSummary = document.createElement('div');
+                    definitionsSummary.className = 'bubble-definitions-summary';
+                    let defHTML = '<span class="def-title">💡 Lexique & Définitions du document :</span>';
+
+                    for (const [term, explanation] of Object.entries(data.definitions)) {
+                        defHTML += `<div><strong>${term}</strong> : ${explanation}</div>`;
+                    }
+                    definitionsSummary.innerHTML = defHTML;
+                    botBubble.appendChild(definitionsSummary);
+                }
+
+                chatLog.appendChild(botBubble);
+
+            } catch (err) {
+                console.error("Erreur chatbot :", err);
+                typingIndicator.style.display = 'none';
+
+                const botBubble = document.createElement('div');
+                botBubble.className = 'chat-bubble bubble-bot';
+                botBubble.innerHTML = `<p style="color:var(--danger)">⚠️ Désolé, une erreur réseau s'est produite lors de l'appel du RAG.</p>`;
+                chatLog.appendChild(botBubble);
+            } finally {
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+        }
+
+        // RENDU DU TIROIR DES SOURCES LATÉRAL (DRAWER)
+        function renderSourcesDrawerContent(sources) {
+            const drawerContent = document.getElementById('sources-drawer-content');
+            drawerContent.innerHTML = ""; // Vider
+
+            sources.forEach((src, idx) => {
+                const card = document.createElement('div');
+                card.className = 'source-card';
+                card.id = `source-card-${src.id}`;
+
+                // Formater l'extrait de texte
+                const cleanText = src.text ? src.text.replace(/\\n/g, '<br>') : 'Aucun contenu disponible.';
+
+                card.innerHTML = `
+                    <div class="source-card-header">
+                        <span class="source-card-title">[${idx + 1}] ${src.title}</span>
+                        <span class="source-country-badge">${src.country}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="source-relevance">🎯 Pertinence : ${src.relevance || '95%'}</span>
+                        <span class="source-clause-id">${src.id || 'N/A'}</span>
+                    </div>
+                    <div class="source-card-body">${cleanText}</div>
+                `;
+                drawerContent.appendChild(card);
+            });
+        }
+
+        // OUVERTURE / FERMETURE DU DRAWER DES SOURCES
+        function toggleSourcesDrawer(isOpen) {
+            const drawer = document.getElementById('sources-drawer');
+            if (isOpen) {
+                drawer.classList.add('open');
+            } else {
+                drawer.classList.remove('open');
+            }
+        }
+
+
+        // VEILLE JURIDIQUE : OBTENIR L'HISTORIQUE DES RAPPORT HTML
+        async function loadMonitoringReports() {
+            const tableBody = document.getElementById('reports-table-body');
+
+            try {
+                const response = await fetch(`${API_URL}/api/reports`);
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    if (data.reports.length === 0) {
+                        tableBody.innerHTML = `
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                    Aucun rapport de veille trouvé. Déclenchez un cycle de veille pour commencer.
+                                </td>
+                            </tr>
+                        `;
+                        return;
+                    }
+
+                    let html = "";
+                    data.reports.forEach(report => {
+                        const dateFormatted = new Date(report.created_at).toLocaleString('fr-FR');
+                        const sizeKB = (report.size_bytes / 1024).toFixed(1);
+
+                        html += `
+                            <tr>
+                                <td style="font-weight: 600;">📑 ${report.filename}</td>
+                                <td style="color: var(--text-muted);">${dateFormatted}</td>
+                                <td>${sizeKB} Ko</td>
+                                <td>
+                                    <button class="open-report-btn" onclick="openReportModal('${report.filename}')">Ouvrir</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    tableBody.innerHTML = html;
+                } else {
+                    tableBody.innerHTML = `<tr><td colspan="4" style="color:var(--danger)">Échec de récupération des rapports.</td></tr>`;
+                }
+            } catch (err) {
+                console.error("Erreur de récupération des rapports :", err);
+                tableBody.innerHTML = `<tr><td colspan="4" style="color:var(--danger)">Erreur de connexion au serveur Flask.</td></tr>`;
+            }
+        }
+
+        // INTERROGER L'ÉTAT DU DAEMON DE VEILLE AUTOMATIQUE
+        async function checkMonitoringStatus() {
+            try {
+                const response = await fetch(`${API_URL}/api/monitoring/status`);
+                const state = await response.json();
+
+                const badge = document.getElementById('monitor-badge-status');
+                const btn = document.getElementById('btn-trigger-monitor');
+
+                if (state.running) {
+                    badge.innerText = "Veille en cours...";
+                    badge.className = "status-badge badge-running";
+                    btn.disabled = true;
+                    btn.innerText = "⏳ Analyse et extraction en cours...";
+                } else {
+                    badge.innerText = "Inactif";
+                    badge.className = "status-badge badge-idle";
+                    btn.disabled = false;
+                    btn.innerText = "⚡ Déclencher un cycle de veille";
+                }
+
+                // Mettre à jour l'historique
+                if (state.last_run) {
+                    const dateFormatted = new Date(state.last_run).toLocaleString('fr-FR');
+                    document.getElementById('monitor-last-run').innerText = dateFormatted;
+                }
+
+                if (state.last_result) {
+                    const res = state.last_result;
+                    document.getElementById('monitor-last-alerts').innerHTML = `
+                        <span style="color:var(--success)">${res.total_updates || 0}</span> MàJ, 
+                        <span style="color:var(--danger)">${res.critical_updates || 0}</span> Critiques
+                    `;
+                }
+
+            } catch (err) {
+                console.error("Erreur d'interrogation du statut de veille :", err);
+            }
+        }
+
+        // DÉCLENCHER MANUELLEMENT LE MONITOR DE VEILLE
+        async function triggerMonitor() {
+            try {
+                const response = await fetch(`${API_URL}/api/run-monitor`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ import_to_rag: true })
+                });
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    // Interroger immédiatement pour mettre à jour l'UI
+                    checkMonitoringStatus();
+                } else {
+                    alert("Erreur: " + data.message);
+                }
+            } catch (err) {
+                console.error("Échec du déclenchement du monitor :", err);
+            }
+        }
+
+        // AFFICHAGE DU MODAL DE RAPPORT INTEGRÉ (IFRAME)
+        function openReportModal(filename) {
+            const overlay = document.getElementById('report-modal-overlay');
+            const iframe = document.getElementById('report-modal-iframe');
+            const title = document.getElementById('report-modal-title');
+
+            title.innerText = `Rapport : ${filename}`;
+            iframe.src = `${API_URL}/api/reports/${filename}`;
+            overlay.style.display = 'flex';
+        }
+
+        // FERMETURE DU MODAL DE RAPPORT
+        function closeReportModal() {
+            const overlay = document.getElementById('report-modal-overlay');
+            const iframe = document.getElementById('report-modal-iframe');
+
+            overlay.style.display = 'none';
+            iframe.src = 'about:blank'; // Libérer la mémoire de l'iframe
+
+            // Rafraîchir les rapports
+            loadMonitoringReports();
+        }
+
+        // --- GESTION DE L'INGESTION DE DOCUMENTS ---
+        function toggleCustomThemeInput() {
+            const selectEl = document.getElementById('upload-theme');
+            const customInput = document.getElementById('upload-theme-custom');
+            if (selectEl.value === 'Autre') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        function toggleCustomCountryInput() {
+            const selectEl = document.getElementById('upload-country');
+            const customInput = document.getElementById('upload-country-custom');
+            if (selectEl.value === 'Autre') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        async function startIngestion() {
+            if (selectedFiles.length === 0) return;
+
+            const btnUpload = document.getElementById('btn-trigger-upload');
+            const themeSelect = document.getElementById('upload-theme');
+            let theme = themeSelect.value;
+            if (theme === 'Autre') {
+                theme = document.getElementById('upload-theme-custom').value.trim() || 'Autre';
+            }
+            const countrySelect = document.getElementById('upload-country');
+            let country = countrySelect.value;
+            if (country === 'Autre') {
+                country = document.getElementById('upload-country-custom').value.trim() || 'Inconnu';
+            }
+
+            // Préparer les données
+            const formData = new FormData();
+            selectedFiles.forEach(file => {
+                formData.append('file', file);
+            });
+            formData.append('theme', theme);
+            formData.append('country', country);
+
+            btnUpload.disabled = true;
+            btnUpload.innerText = "⏳ Téléchargement en cours...";
+
+            const progressGrid = document.getElementById('ingestion-progress-grid');
+            progressGrid.innerHTML = `
+                <div style="text-align: center; color: var(--text-muted); padding: 40px 20px;">
+                    <span style="font-size: 32px; display: block; margin-bottom: 8px;">⏳</span>
+                    Téléchargement des fichiers sur le serveur...
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`${API_URL}/api/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    // Lancer le polling immédiat et périodique
+                    pollIngestionStatus();
+                    if (ingestionInterval) clearInterval(ingestionInterval);
+                    ingestionInterval = setInterval(pollIngestionStatus, 2000);
+                } else {
+                    progressGrid.innerHTML = `
+                        <div style="background:rgba(239,68,68,0.1); border-left:3px solid var(--danger); padding:16px; border-radius:8px; color:var(--danger); font-size:13px;">
+                            <strong>Erreur lors du chargement :</strong> ${data.message}
+                        </div>
+                    `;
+                    btnUpload.disabled = false;
+                    btnUpload.innerText = "📤 Lancer l'ingestion automatique";
+                }
+            } catch (err) {
+                progressGrid.innerHTML = `
+                    <div style="background:rgba(239,68,68,0.1); border-left:3px solid var(--danger); padding:16px; border-radius:8px; color:var(--danger); font-size:13px;">
+                        <strong>Erreur de connexion :</strong> Impossible de joindre le serveur Flask.
+                    </div>
+                `;
+                btnUpload.disabled = false;
+                btnUpload.innerText = "📤 Lancer l'ingestion automatique";
+            }
+        }
+
+        async function pollIngestionStatus() {
+            const progressGrid = document.getElementById('ingestion-progress-grid');
+            const btnUpload = document.getElementById('btn-trigger-upload');
+
+            try {
+                const response = await fetch(`${API_URL}/api/ingestion/status`);
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    if (!data.jobs || data.jobs.length === 0) {
+                        // Si aucun travail n'est présent (par exemple après un redémarrage ou vidage du serveur)
+                        clearInterval(ingestionInterval);
+                        progressGrid.innerHTML = "";
+                        btnUpload.disabled = false;
+                        btnUpload.innerText = "📤 Lancer l'ingestion automatique";
+                        selectedFiles = [];
+                        document.getElementById('drag-drop-text').innerText = "Glissez-déposez vos fichiers PDF ou Word (.docx, .doc) ici ou cliquez pour parcourir";
+                        loadDashboardStats();
+                        return;
+                    }
+
+                    let html = "";
+                    let anyRunning = false;
+
+                    data.jobs.forEach(job => {
+                        let badgeClass = "badge-idle";
+                        let badgeStyle = "";
+                        let statusLabel = "En file";
+                        let barColor = "var(--text-muted)";
+                        let shadowColor = "rgba(156, 163, 175, 0.2)";
+
+                        if (job.running) {
+                            badgeClass = "badge-running";
+                            statusLabel = "En cours";
+                            barColor = "var(--primary)";
+                            shadowColor = "var(--primary-glow)";
+                            anyRunning = true;
+                        } else if (job.success) {
+                            if (job.conflicts_detected && job.conflicts_detected > 0) {
+                                badgeClass = "";
+                                badgeStyle = "background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3);";
+                                statusLabel = `⚠️ Conflit (${job.conflicts_detected})`;
+                                barColor = "var(--warning)";
+                                shadowColor = "rgba(245, 158, 11, 0.35)";
+                            } else {
+                                badgeClass = "badge-idle";
+                                statusLabel = "Terminé";
+                                barColor = "var(--success)";
+                                shadowColor = "rgba(16, 185, 129, 0.3)";
+                            }
+                        } else if (job.error) {
+                            badgeClass = "";
+                            badgeStyle = "background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2);";
+                            statusLabel = "Échec";
+                            barColor = "var(--danger)";
+                            shadowColor = "rgba(239, 68, 68, 0.3)";
+                        } else {
+                            // En file
+                            badgeStyle = "background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--border-color);";
+                            anyRunning = true; // La file n'est pas encore finie
+                        }
+
+                        html += `
+                            <div class="monitor-card" style="padding: 18px; margin-bottom: 0; background: rgba(255,255,255,0.01); border-color: var(--border-color); display: flex; flex-direction: column; gap: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                                    <span style="font-size: 13px; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 75%;" title="${job.filename}">📄 ${job.filename}</span>
+                                    <span class="status-badge ${badgeClass}" style="${badgeStyle} font-size: 10px; padding: 2px 8px; flex-shrink: 0;">${statusLabel}</span>
+                                </div>
+                                <div style="background: rgba(255, 255, 255, 0.05); height: 6px; border-radius: 99px; overflow: hidden; position: relative; margin: 4px 0;">
+                                    <div style="height: 100%; width: ${job.progress_percent}%; background: linear-gradient(90deg, ${barColor} 0%, var(--secondary) 100%); border-radius: 99px; transition: width 0.4s ease; box-shadow: 0 0 6px ${shadowColor};"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 10.5px; color: var(--text-muted); gap: 10px;">
+                                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 80%;">${job.progress}</span>
+                                    <span>${job.progress_percent}%</span>
+                                </div>
+                                ${job.error ? `<div style="color:var(--danger); font-size:10px; background:rgba(239,68,68,0.05); padding:6px 10px; border-radius:6px; border:1px solid rgba(239,68,68,0.1); margin-top:2px;">${job.error}</div>` : ''}
+                            </div>
+                        `;
+                    });
+
+                    progressGrid.innerHTML = html;
+
+                    // Si plus rien ne tourne, arrêter le polling
+                    if (!anyRunning) {
+                        clearInterval(ingestionInterval);
+                        btnUpload.disabled = false;
+                        btnUpload.innerText = "📤 Lancer l'ingestion automatique";
+
+                        // Réinitialiser les fichiers sélectionnés
+                        selectedFiles = [];
+                        document.getElementById('drag-drop-text').innerText = "Glissez-déposez vos fichiers PDF ou Word (.docx, .doc) ici ou cliquez pour parcourir";
+
+                        // Recharger les statistiques du dashboard
+                        loadDashboardStats();
+                    }
+                }
+            } catch (err) {
+                console.error("Erreur polling statut batch Ingestion :", err);
+            }
+        }
+    </script>
+</body>
+
+</html>
